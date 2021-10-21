@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Singleton
+    #region Singleton
     public static PlayerController instance;
     private void Awake()
     {
@@ -23,14 +23,21 @@ public class PlayerController : MonoBehaviour
     {
         instance = null;
     }
+    #endregion
 
-    // Logic
+    #region Logic
+    public PlayerProperties properties;
+    [SerializeField] private CameraTP attachedCamera;
+
     private PlayerState currentState;
     private Rigidbody rb;
+    private Animator animator;
+    private bool isHidden = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         SetState(new WalkPlayerState());
     }
 
@@ -40,12 +47,62 @@ public class PlayerController : MonoBehaviour
             currentState.OnUpdate();
     }
 
-    private void SetState (PlayerState nextState)
+    private void FixedUpdate()
     {
         if (currentState != null)
-            currentState.onDettach();
+            currentState.OnFixedUpdate();
+    }
+
+    public void SetState (PlayerState nextState)
+    {
+        if (currentState != null)
+            currentState.OnDettach();
 
         currentState = nextState;
-        currentState.OnAttach();
+
+        currentState.OnAttach(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        currentState.OnEnterTrigger(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        currentState.OnExitTrigger(other);
+    }
+    #endregion
+
+    #region Getter & setter
+    public CameraTP GetAttachedCamera()
+    {
+        return attachedCamera;
+    }
+
+    public void SetAttachedCamera (CameraTP newCamera)
+    {
+        attachedCamera = newCamera;
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return rb;
+    }
+
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
+    public bool GetIsHidden()
+    {
+        return isHidden;
+    }
+
+    public void SetIsHidden (bool value)
+    {
+        isHidden = value;
+    }
+    #endregion
 }

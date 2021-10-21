@@ -5,24 +5,34 @@ using UnityEngine;
 public class CameraTP : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private float maxAngle;
-    [SerializeField] private Vector3 positionOffset, lookOffset;
+    [SerializeField] private float maxAngle = 50.0f;
+    [SerializeField] private float cameraHeight = 2.0f;
+    [SerializeField] private float zoomSpeed = 12.0f;
     [Space]
     [SerializeField, Range(0, 15)] private float sensivity = 12.0f;
     [SerializeField] private bool invertY = false;
 
     private Camera cameraChild;
 
+    private float zoom = 5.0f;
+    private float targetZoom; // for lerp zoom
+
     void Awake()
     {
         cameraChild = GetComponentInChildren<Camera>();
+        cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
     }
 
     void Update()
     {
-        transform.position = target.position + positionOffset;
-        cameraChild.transform.LookAt(target.position + lookOffset);
+        zoom = Mathf.Lerp(zoom, targetZoom, Time.deltaTime * zoomSpeed);
 
+        // Look at player
+        transform.position = target.position;
+        cameraChild.transform.LookAt(target);
+        cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
+
+        // Rotate by mouse
         Vector2 mouseInputs = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         if (invertY == false) mouseInputs.y *= -1;
 
@@ -40,4 +50,9 @@ public class CameraTP : MonoBehaviour
             transform.eulerAngles = finalRotation;
 
     }
+
+    public void SetZoom (float value)
+    {
+        targetZoom = value;
+    } 
 }
