@@ -168,9 +168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1599487528}
+  maxAngle: 50
   positionOffset: {x: 0, y: 0, z: 0}
   lookOffset: {x: 0, y: 0, z: 0}
-  sensivity: 50
+  sensivity: 3.81
   invertY: 0
 --- !u!1 &705507993
 GameObject:
@@ -362,6 +363,7 @@ GameObject:
   - component: {fileID: 1599487525}
   - component: {fileID: 1599487524}
   - component: {fileID: 1599487529}
+  - component: {fileID: 1599487530}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -476,8 +478,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  crouchedMoveSpeed: 5
   rotateSpeed: 10
   attachedCamera: {fileID: 156322501}
+--- !u!114 &1599487530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599487523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c1c61525dc00040850500ab5b87a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1646195749
 GameObject:
   m_ObjectHideFlags: 0

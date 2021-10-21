@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float crouchedMoveSpeed = 5.0f;
     [SerializeField] private float rotateSpeed = 10.0f;
     [Space]
     [SerializeField] private CameraTP attachedCamera;
