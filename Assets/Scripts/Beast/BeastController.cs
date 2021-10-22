@@ -12,6 +12,7 @@ public class BeastController : MonoBehaviour
 
     private List<InterestPointBeast> interestPoints;
     private bool patternRunning = false;
+    private float currentLightSize = 10.0f;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class BeastController : MonoBehaviour
     {
         UpdatePoints();
         StartPattern();
+    }
+
+    private void Update()
+    {
+        // Detection trigger
     }
 
     private void UpdatePoints()
@@ -62,20 +68,22 @@ public class BeastController : MonoBehaviour
                 if (interestPoints[i].transitionTime < 0.15f)
                 {
                     // Instant transition
-                    eyeLight.spotAngle = interestPoints[nextPoint].zoneSize;
+                    currentLightSize = interestPoints[nextPoint].zoneSize;
+                    eyeLight.spotAngle = currentLightSize;
                     eye.transform.position = interestPoints[nextPoint].transform.position;
                 }
                 else
                 {
                     // Smooth transition
                     int iterationsCount = Mathf.RoundToInt(interestPoints[i].transitionTime / Time.deltaTime);
+                    currentLightSize = interestPoints[nextPoint].zoneSize;
 
-                    for(int y = 0; y < iterationsCount; y++)
+                    for (int y = 0; y < iterationsCount; y++)
                     {
                         Vector3 targetPosition = interestPoints[nextPoint].transform.position;
 
+                        eyeLight.spotAngle = Mathf.Lerp(eyeLight.spotAngle, currentLightSize, (float)y / iterationsCount);
                         eye.transform.position = Vector3.Lerp(eye.transform.position, targetPosition, (float)y / iterationsCount);
-                        eyeLight.spotAngle = Mathf.Lerp(eyeLight.spotAngle, interestPoints[nextPoint].zoneSize, (float)y / iterationsCount);
                         yield return new WaitForSeconds(Time.deltaTime);
                     }
                 }

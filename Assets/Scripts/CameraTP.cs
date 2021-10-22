@@ -8,6 +8,7 @@ public class CameraTP : MonoBehaviour
     [SerializeField] private float maxAngle = 50.0f;
     [SerializeField] private float cameraHeight = 2.0f;
     [SerializeField] private float zoomSpeed = 12.0f;
+    [SerializeField] private LayerMask collisionMask;
     [Space]
     [SerializeField, Range(0, 15)] private float sensivity = 12.0f;
     [SerializeField] private bool invertY = false;
@@ -25,7 +26,16 @@ public class CameraTP : MonoBehaviour
 
     void Update()
     {
-        zoom = Mathf.Lerp(zoom, targetZoom, Time.deltaTime * zoomSpeed);
+        RaycastHit hit;
+        if (Physics.Linecast(target.transform.position, transform.position, out hit, collisionMask))
+        {
+            Debug.Log("Clamp zoom");
+            zoom = Vector3.Distance(transform.position, hit.point);
+        }
+        else
+        {
+            zoom = Mathf.Lerp(zoom, targetZoom, Time.deltaTime * zoomSpeed);
+        }
 
         // Look at player
         transform.position = target.position;
@@ -54,5 +64,10 @@ public class CameraTP : MonoBehaviour
     public void SetZoom (float value)
     {
         targetZoom = value;
-    } 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(target.transform.position, transform.position);
+    }
 }
