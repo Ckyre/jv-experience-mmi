@@ -26,21 +26,21 @@ public class CameraTP : MonoBehaviour
 
     void Update()
     {
-        RaycastHit hit;
-        if (Physics.Linecast(target.transform.position, transform.position, out hit, collisionMask))
-        {
-            Debug.Log("Clamp zoom");
-            zoom = Vector3.Distance(transform.position, hit.point);
-        }
-        else
-        {
-            zoom = Mathf.Lerp(zoom, targetZoom, Time.deltaTime * zoomSpeed);
-        }
+        zoom = Mathf.Lerp(zoom, targetZoom, Time.deltaTime * zoomSpeed);
 
         // Look at player
         transform.position = target.position;
         cameraChild.transform.LookAt(target);
-        cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
+
+        // Prevent going into meshes
+        Vector3 cameraDirection = (target.transform.position - cameraChild.transform.position).normalized;
+        Vector3 collisionCheckPoint = target.transform.position - (cameraDirection * targetZoom);
+        RaycastHit hit;
+        if (Physics.Linecast(target.transform.position, collisionCheckPoint, out hit, collisionMask))
+            cameraChild.transform.position = hit.point + (cameraDirection * 1.5f);
+        else
+            cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
+
 
         // Rotate by mouse
         Vector2 mouseInputs = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -68,6 +68,13 @@ public class CameraTP : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(target.transform.position, transform.position);
+        if (cameraChild)
+        {
+            Vector3 cameraDirection = (target.transform.position - cameraChild.transform.position).normalized;
+            Vector3 collisionCheckPoint = target.transform.position - (cameraDirection * targetZoom);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(target.transform.position, collisionCheckPoint);
+        }
     }
+
 }
