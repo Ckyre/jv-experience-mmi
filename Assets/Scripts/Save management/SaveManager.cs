@@ -12,14 +12,6 @@ public class SaveManager : MonoBehaviour
         file.Data.playerLevel = 44;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Save();
-        }
-    }
-
     public void Load()
     {
         file = new SaveFile(Application.dataPath + relativePath);

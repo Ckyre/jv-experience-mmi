@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeastController : MonoBehaviour
+public class BeastController : MonoBehaviour, Actor
 {
     [SerializeField] private float commonHeight = 8.0f;
     [Space]
@@ -34,7 +34,7 @@ public class BeastController : MonoBehaviour
         if (!PlayerController.instance.GetIsHidden())
         {
             Debug.Log("Player died");
-            PlayerController.instance.SetState(new DeadPlayerState());
+            PlayerController.instance.Die();
         }
     }
 
@@ -136,6 +136,8 @@ public class BeastController : MonoBehaviour
         }
     }
     #endregion
+
+    public void Die() { }
 
     private void OnDrawGizmos()
     {

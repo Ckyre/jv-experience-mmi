@@ -18,10 +18,13 @@ public class WalkPlayerState : PlayerState
         base.OnUpdate();
 
         // Transitions
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(parent.inputCodes.crouch))
             parent.SetState(new CrouchPlayerState());
 
-        parent.GetAnimator().SetBool("isMoving", moveInputs != Vector2.zero);
+        bool isMoving = moveInputs != Vector2.zero;
+        parent.GetAnimator().SetBool("isMoving", isMoving);
+        if (isMoving)
+            parent.OnMoveInvoke();
 
         Move(parent.properties.walkSpeed);
     }
@@ -29,8 +32,6 @@ public class WalkPlayerState : PlayerState
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();
-
-        
     }
 
     public override void OnDettach()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, Actor
 {
     #region Singleton
     public static PlayerController instance;
@@ -25,8 +25,25 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    #region Events
+    public delegate void InteractAction();
+    public event InteractAction OnInteract;
+
+    public delegate void DieAction();
+    public event DieAction OnDie;
+
+    public delegate void MoveAction();
+    public event MoveAction OnMove;
+
+    public delegate void CrouchAction();
+    public event CrouchAction OnCrouch;
+    #endregion
+
+
     #region Logic
     public PlayerProperties properties;
+    public PlayerInputMapping inputCodes;
+    [Space]
     [SerializeField] private CameraTP attachedCamera;
 
     private PlayerState currentState;
@@ -45,6 +62,13 @@ public class PlayerController : MonoBehaviour
     {
         if (currentState != null)
             currentState.OnUpdate();
+
+        // Events invoke
+        if (Input.GetKeyDown(inputCodes.interact))
+        {
+            if (OnInteract != null)
+                OnInteract();
+        }
     }
 
     private void FixedUpdate()
@@ -73,6 +97,14 @@ public class PlayerController : MonoBehaviour
         currentState.OnExitTrigger(other);
     }
     #endregion
+
+    public void Die()
+    {
+        if (OnDie != null)
+            OnDie();
+
+        SetState(new DeadPlayerState());
+    }
 
     #region Getter & setter
     public CameraTP GetAttachedCamera()
@@ -103,6 +135,18 @@ public class PlayerController : MonoBehaviour
     public void SetIsHidden (bool value)
     {
         isHidden = value;
+    }
+
+    public void OnMoveInvoke()
+    {
+        if (OnMove != null)
+            OnMove();
+    }
+
+    public void OnCrouchInvoke()
+    {
+        if (OnCrouch != null)
+            OnCrouch();
     }
     #endregion
 }

@@ -6,6 +6,7 @@ public class CrouchPlayerState : WalkPlayerState
     {
         base.OnAttach(player);
 
+        parent.OnCrouchInvoke();
         attachedCamera.SetZoom(parent.properties.crouchCameraZoom);
         parent.GetAnimator().SetBool("isCrouched", true);
     }
@@ -13,10 +14,13 @@ public class CrouchPlayerState : WalkPlayerState
     public override void OnUpdate()
     {
         // Transitions
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(parent.inputCodes.crouch))
             parent.SetState(new WalkPlayerState());
 
-        parent.GetAnimator().SetBool("isMoving", moveInputs != Vector2.zero);
+        bool isMoving = moveInputs != Vector2.zero;
+        parent.GetAnimator().SetBool("isMoving", isMoving);
+        if(isMoving)
+            parent.OnMoveInvoke();
 
         Move(parent.properties.crouchWalkSpeed);
     }
