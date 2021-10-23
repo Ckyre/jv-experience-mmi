@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec50cb113f0d8040a2fc0fdc9c90dbb, type: 3}
   m_Name: Debug
   m_EditorClassIdentifier: 
-  walkSpeed: 6
-  crouchWalkSpeed: 4
+  walkSpeed: 350
+  crouchWalkSpeed: 200
   rotateSpeed: 10
   cameraZoom: 3
-  crouchCameraZoom: 6
+  crouchCameraZoom: 4.5

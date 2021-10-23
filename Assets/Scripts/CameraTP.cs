@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraTP : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private float maxAngle = 50.0f;
+    [SerializeField] private Vector2 lookOffset;
+    [SerializeField] private float maxYAngle = 50.0f;
     [SerializeField] private float cameraHeight = 2.0f;
     [SerializeField] private float zoomSpeed = 12.0f;
     [SerializeField] private LayerMask collisionMask;
@@ -30,17 +31,20 @@ public class CameraTP : MonoBehaviour
 
         // Look at player
         transform.position = target.position;
-        cameraChild.transform.LookAt(target);
+        Vector3 lOffset = (target.forward * lookOffset.x) + (Vector3.up * lookOffset.y);
+        cameraChild.transform.LookAt(target.position + lOffset);
 
         // Prevent going into meshes
         Vector3 cameraDirection = (target.transform.position - cameraChild.transform.position).normalized;
-        Vector3 collisionCheckPoint = target.transform.position - (cameraDirection * targetZoom);
+        Vector3 collisionCheckPoint = target.transform.position - (cameraDirection * targetZoom) * 1.3f;
         RaycastHit hit;
         if (Physics.Linecast(target.transform.position, collisionCheckPoint, out hit, collisionMask))
-            cameraChild.transform.position = hit.point + (cameraDirection * 1.5f);
+        {
+            if (Vector3.Distance(target.transform.position, cameraChild.transform.position) > 0.5f)
+                cameraChild.transform.position = hit.point + (cameraDirection * 1.5f);
+        }
         else
             cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
-
 
         // Rotate by mouse
         Vector2 mouseInputs = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -54,11 +58,10 @@ public class CameraTP : MonoBehaviour
         else if (finalRotation.x < 0)
             finalRotation.x += 360;
 
-        if (finalRotation.x > 0 && finalRotation.x < maxAngle)
+        if (finalRotation.x > 0 && finalRotation.x < maxYAngle)
             transform.eulerAngles = finalRotation;
-        else if (finalRotation.x > (360 - maxAngle) && finalRotation.x < 360)
+        else if (finalRotation.x > (360 - maxYAngle) && finalRotation.x < 360)
             transform.eulerAngles = finalRotation;
-
     }
 
     public void SetZoom (float value)
@@ -71,7 +74,7 @@ public class CameraTP : MonoBehaviour
         if (cameraChild)
         {
             Vector3 cameraDirection = (target.transform.position - cameraChild.transform.position).normalized;
-            Vector3 collisionCheckPoint = target.transform.position - (cameraDirection * targetZoom);
+            Vector3 collisionCheckPoint = target.transform.position - (cameraDirection * targetZoom) * 1.3f;
             Gizmos.color = Color.green;
             Gizmos.DrawLine(target.transform.position, collisionCheckPoint);
         }

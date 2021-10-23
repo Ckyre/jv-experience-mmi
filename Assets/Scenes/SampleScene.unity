@@ -758,6 +758,11 @@ Transform:
   m_Father: {fileID: 1042283094}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1829901791 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8498341103567982505, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
+  m_PrefabInstance: {fileID: 8498341105091441025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &673903314516331187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -765,6 +770,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1639251780}
     m_Modifications:
+    - target: {fileID: 1167922503, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.731317
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167922503, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.731317
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167922503, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.14107218
+      objectReference: {fileID: 0}
     - target: {fileID: 673903313284792216, guid: 90184779567660f4fa45514d8bc92614, type: 3}
       propertyPath: m_Name
       value: Elevator group
@@ -812,6 +829,18 @@ PrefabInstance:
     - target: {fileID: 673903313284792223, guid: 90184779567660f4fa45514d8bc92614, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 673903313726037668, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 673903313726037675, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: upSpeed
+      value: 2.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 673903313726037675, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: downPositionY
+      value: -0.81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90184779567660f4fa45514d8bc92614, type: 3}
@@ -1068,7 +1097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8498341103402531129, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: 8498341103402531129, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1101,6 +1130,22 @@ PrefabInstance:
     - target: {fileID: 8498341103402531129, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498341103567982501, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498341103567982501, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498341104943512388, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1829901791}
+    - target: {fileID: 8498341104943512388, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
+      propertyPath: zoomSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}

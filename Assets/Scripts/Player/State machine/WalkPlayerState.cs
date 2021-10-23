@@ -40,7 +40,7 @@ public class WalkPlayerState : PlayerState
 
     public void Move (float speed)
     {
-        moveInputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        moveInputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         // Rotation toward camera
         if (moveInputs != Vector2.zero)
@@ -55,10 +55,17 @@ public class WalkPlayerState : PlayerState
         Vector3 moveDirection = (right + forward).normalized;
 
         // Apply move force
-        Vector3 moveStep = new Vector3(moveDirection.x * speed * Time.fixedDeltaTime, 0, moveDirection.z * speed * Time.fixedDeltaTime);
         if (parent.GetIsParentedToElevator())
-            parent.transform.localPosition += moveStep / 15;
+        {
+            Vector3 moveStep = new Vector3(moveDirection.x * 8 * Time.fixedDeltaTime, 0, moveDirection.z * 8 * Time.fixedDeltaTime);
+            parent.transform.localPosition += moveStep / 8;
+            rb.velocity = Vector3.zero;
+        }
         else
-            rb.MovePosition(parent.transform.position + moveStep);
+        {
+            Vector3 velocity = new Vector3(moveDirection.x * speed * Time.fixedDeltaTime, rb.velocity.y, moveDirection.z * speed * Time.fixedDeltaTime);
+            rb.velocity = velocity;
+            //rb.MovePosition(parent.transform.position + velocity);
+        }
     }
 }

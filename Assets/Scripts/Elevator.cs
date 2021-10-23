@@ -10,8 +10,10 @@ public class Elevator : MonoBehaviour
     [SerializeField] private float downSpeed = 5.0f;
 
     private bool isMoving = false;
+    private bool isFreeze = false;
     private bool targetIsUp = false;
-    private Vector3 targetPos;
+    private Vector3 targetPos, startPos;
+    private float tAddition = 0;
 
     private void Start()
     {
@@ -31,12 +33,18 @@ public class Elevator : MonoBehaviour
             targetPos = transform.position;
         }
 
-        if (isMoving)
+        if (isMoving && !isFreeze)
         {
             if (targetIsUp)
-                transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * upSpeed);
+            {
+                transform.position = Vector3.Lerp(startPos, targetPos, tAddition + (Time.deltaTime * upSpeed));
+                tAddition += Time.deltaTime * upSpeed;
+            }
             else
-                transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * downSpeed);
+            {
+                transform.position = Vector3.Lerp(startPos, targetPos, tAddition + (Time.deltaTime * downSpeed));
+                tAddition += Time.deltaTime * downSpeed;
+            }
         }
     }
 
@@ -44,6 +52,8 @@ public class Elevator : MonoBehaviour
     {
         if (!isMoving)
         {
+            startPos = transform.position;
+            tAddition = 0;
             targetPos = new Vector3(transform.position.x, upPositionY, transform.position.z);
             isMoving = true;
             targetIsUp = true;
@@ -54,6 +64,8 @@ public class Elevator : MonoBehaviour
     {
         if (!isMoving)
         {
+            startPos = transform.position;
+            tAddition = 0;
             targetPos = new Vector3(transform.position.x, downPositionY, transform.position.z);
             isMoving = true;
             targetIsUp = false;
@@ -65,9 +77,16 @@ public class Elevator : MonoBehaviour
         if (!isMoving)
         {
             targetIsUp = !targetIsUp;
+            startPos = transform.position;
+            tAddition = 0;
             targetPos = new Vector3(transform.position.x, (targetIsUp ? upPositionY : downPositionY), transform.position.z);
             isMoving = true;
         }
+    }
+
+    public void Freeze (bool freeze)
+    {
+        isFreeze = freeze;
     }
 
     private void OnTriggerEnter (Collider other)
@@ -88,6 +107,7 @@ public class Elevator : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (!EditorApplication.isPlaying)
@@ -101,4 +121,6 @@ public class Elevator : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(transform.position.x, downPositionY, transform.position.z), new Vector3(transform.position.x, upPositionY, transform.position.z));
     }
+    #endif
+
 }
