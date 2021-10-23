@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class Trigger : MonoBehaviour
 {
+    [SerializeField] private bool showGizmos = true;
+    [Space]
     public UnityEvent playerEnter;
     public UnityEvent playerExit;
     public UnityEvent playerStay;
@@ -35,7 +37,10 @@ public class Trigger : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, transform.localScale);
+        if (showGizmos)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(transform.position, transform.localScale);
+        }
     }
 }

@@ -31,7 +31,7 @@ public class BeastController : MonoBehaviour, Actor
 
     public void KillPlayer()
     {
-        if (!PlayerController.instance.GetIsHidden())
+        if (!PlayerController.instance.GetIsHidden() && !PlayerController.instance.IsBushActive())
         {
             Debug.Log("Player died");
             PlayerController.instance.Die();

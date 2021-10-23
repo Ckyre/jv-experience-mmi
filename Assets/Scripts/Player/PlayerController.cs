@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,16 +44,21 @@ public class PlayerController : MonoBehaviour, Actor
     public PlayerInputMapping inputCodes;
     [Space]
     [SerializeField] private CameraTP attachedCamera;
+    [SerializeField] private Transform bushMesh;
 
     private PlayerState currentState;
     private Rigidbody rb;
     private Animator animator;
+    private InteractionPoint listeningInteraction;
     private bool isHidden = false;
+    private bool isParentedToElevator = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+
+        ActiveBush(false);
         SetState(new WalkPlayerState());
     }
 
@@ -68,6 +72,9 @@ public class PlayerController : MonoBehaviour, Actor
         {
             if (OnInteract != null)
                 OnInteract();
+
+            if (listeningInteraction != null)
+                listeningInteraction.OnPlayerInteract();
         }
     }
 
@@ -75,6 +82,10 @@ public class PlayerController : MonoBehaviour, Actor
     {
         if (currentState != null)
             currentState.OnFixedUpdate();
+    }
+
+    private void LateUpdate()
+    {
     }
 
     public void SetState (PlayerState nextState)
@@ -107,14 +118,16 @@ public class PlayerController : MonoBehaviour, Actor
     }
 
     #region Getter & setter
-    public CameraTP GetAttachedCamera()
-    {
-        return attachedCamera;
-    }
-
+    // Setters
     public void SetAttachedCamera (CameraTP newCamera)
     {
         attachedCamera = newCamera;
+    }
+
+    // Getters
+    public CameraTP GetAttachedCamera()
+    {
+        return attachedCamera;
     }
 
     public Rigidbody GetRigidbody()
@@ -132,11 +145,7 @@ public class PlayerController : MonoBehaviour, Actor
         return isHidden;
     }
 
-    public void SetIsHidden (bool value)
-    {
-        isHidden = value;
-    }
-
+    // Events triggers
     public void OnMoveInvoke()
     {
         if (OnMove != null)
@@ -147,6 +156,45 @@ public class PlayerController : MonoBehaviour, Actor
     {
         if (OnCrouch != null)
             OnCrouch();
+    }
+
+    // Elevator
+    public void SetIsParentedToElevator (bool value)
+    {
+        isParentedToElevator = value;
+    }
+
+    public bool GetIsParentedToElevator()
+    {
+        return isParentedToElevator;
+    }
+
+    // Tall grass
+    public void SetIsHidden(bool value)
+    {
+        isHidden = value;
+    }
+
+    // Pickable bush
+    public void ActiveBush (bool active)
+    {
+        bushMesh.gameObject.SetActive(active);
+    }
+
+    public bool IsBushActive()
+    {
+        return bushMesh.gameObject.activeSelf;
+    }
+
+    // Interactions callback list
+    public void SetInteractionListener (InteractionPoint point)
+    {
+        listeningInteraction = point;
+    }
+
+    public void RemoveInteractionListener()
+    {
+        listeningInteraction = null;
     }
     #endregion
 }

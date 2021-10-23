@@ -8,14 +8,14 @@ public class InteractionPoint : MonoBehaviour
 
     private bool playerInTrigger = false;
 
-    private void OnPlayerInteract()
+    public void OnPlayerInteract()
     {
         if (playerInTrigger)
         {
             Vector3 dir = (transform.position - PlayerController.instance.transform.position).normalized;
             float angle = Vector3.Angle(dir, PlayerController.instance.transform.forward);
 
-            if(angle < maxAngleToInteract)
+            if (angle < maxAngleToInteract)
                 playerInteract.Invoke();
         }
     }
@@ -25,6 +25,7 @@ public class InteractionPoint : MonoBehaviour
         if(other.transform == PlayerController.instance.transform)
         {
             playerInTrigger = true;
+            PlayerController.instance.SetInteractionListener(this);
         }
     }
 
@@ -34,10 +35,5 @@ public class InteractionPoint : MonoBehaviour
         {
             playerInTrigger = false;
         }
-    }
-
-    private void Start()
-    {
-        PlayerController.instance.OnInteract += OnPlayerInteract;
     }
 }

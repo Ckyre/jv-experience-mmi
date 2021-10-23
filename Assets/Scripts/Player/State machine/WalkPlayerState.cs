@@ -3,7 +3,6 @@ using UnityEngine;
 public class WalkPlayerState : PlayerState
 {
     protected Vector2 moveInputs;
-    
 
     public override void OnAttach(PlayerController player)
     {
@@ -57,6 +56,9 @@ public class WalkPlayerState : PlayerState
 
         // Apply move force
         Vector3 moveStep = new Vector3(moveDirection.x * speed * Time.fixedDeltaTime, 0, moveDirection.z * speed * Time.fixedDeltaTime);
-        rb.MovePosition(parent.transform.position + moveStep);
+        if (parent.GetIsParentedToElevator())
+            parent.transform.localPosition += moveStep / 15;
+        else
+            rb.MovePosition(parent.transform.position + moveStep);
     }
 }

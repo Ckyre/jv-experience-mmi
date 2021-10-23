@@ -17,14 +17,15 @@ public class CrouchPlayerState : WalkPlayerState
         if (Input.GetKeyDown(parent.inputCodes.crouch))
             parent.SetState(new WalkPlayerState());
 
+        // Animations
         bool isMoving = moveInputs != Vector2.zero;
         parent.GetAnimator().SetBool("isMoving", isMoving);
-        if(isMoving)
-            parent.OnMoveInvoke();
 
+        if(isMoving) parent.OnMoveInvoke();
         Move(parent.properties.crouchWalkSpeed);
     }
 
+    // Tall grass
     public override void OnEnterTrigger (Collider other)
     {
         base.OnEnterTrigger(other);
