@@ -15,15 +15,15 @@ public class PlayerInputMapping : ScriptableObject
     public Vector2 GetMoveAxis()
     {
         float x = 0.0f;
-        if (Input.GetKey(moveForward))
+        if (Input.GetKey(moveRight))
             x = 1.0f;
-        else if (Input.GetKey(moveBackward))
+        else if (Input.GetKey(moveLeft))
             x = -1.0f;
 
         float y = 0.0f;
-        if (Input.GetKey(moveRight))
+        if (Input.GetKey(moveForward))
             y = 1.0f;
-        else if (Input.GetKey(moveLeft))
+        else if (Input.GetKey(moveBackward))
             y = -1.0f;
 
         return new Vector2(x, y);

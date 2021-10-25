@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour, Actor
     public event CrouchAction OnCrouch;
     #endregion
 
-
     #region Logic
     public PlayerProperties properties;
     public PlayerInputMapping inputCodes;
@@ -52,11 +51,13 @@ public class PlayerController : MonoBehaviour, Actor
     private InteractionPoint listeningInteraction;
     private bool isHidden = false;
     private bool isParentedToElevator = false;
+    private LayerMask groundMask;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        groundMask = LayerMask.GetMask("Ground");
 
         ActiveBush(false);
         SetState(new WalkPlayerState());
@@ -115,6 +116,19 @@ public class PlayerController : MonoBehaviour, Actor
             OnDie();
 
         SetState(new DeadPlayerState());
+    }
+
+    public bool IsGrounded()
+    {
+        if(Physics.Raycast(transform.position, -Vector3.up, properties.grondDistanceCheck, groundMask))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
+            return true;
+        }
+
+        // Else apply gravity
+        rb.AddForce((-Vector3.up * properties.gravityForce) * Time.deltaTime);
+        return false;
     }
 
     #region Getter & setter
@@ -197,4 +211,11 @@ public class PlayerController : MonoBehaviour, Actor
         listeningInteraction = null;
     }
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 targetPos = transform.position - new Vector3(0, properties.grondDistanceCheck, 0);
+        Gizmos.DrawLine(transform.position, targetPos);
+    }
 }
