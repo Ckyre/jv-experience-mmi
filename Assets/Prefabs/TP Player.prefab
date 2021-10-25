@@ -2537,7 +2537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   properties: {fileID: 11400000, guid: d38c53ee47ae890418f1312a95798502, type: 2}
-  inputCodes: {fileID: 11400000, guid: 29c4db7985b755b4181ac7b4c84191fc, type: 2}
+  inputCodes: {fileID: 11400000, guid: 5a5b156f6c2509549949604209b6c951, type: 2}
   attachedCamera: {fileID: 8498341104943512388}
   bushMesh: {fileID: 6021408498895093266}
 --- !u!1 &8498341104141884656
