@@ -28,16 +28,6 @@ public class WalkPlayerState : PlayerState
         Move(parent.properties.walkSpeed);
     }
 
-    public override void OnFixedUpdate()
-    {
-        base.OnFixedUpdate();
-    }
-
-    public override void OnDettach()
-    {
-        base.OnDettach();
-    }
-
     public void Move (float speed)
     {
         moveInputs = parent.inputCodes.GetMoveAxis();
@@ -50,6 +40,13 @@ public class WalkPlayerState : PlayerState
         }
 
         // Movement
+        /*
+        Vector3 rotatedGroundNormal = parent.GetGroundNormal();
+        Vector3 right = moveInputs.x * (Quaternion.AngleAxis(90, Vector3.forward) * rotatedGroundNormal);
+        Vector3 forward = moveInputs.y * (Quaternion.AngleAxis(90, -Vector3.right) * rotatedGroundNormal);
+        Vector3 moveDirection = (right + forward).normalized;
+        Debug.DrawRay(new Vector3(parent.transform.position.x, parent.transform.position.y + parent.properties.feetPos.y, parent.transform.position.z), moveDirection, Color.red);
+        */
         Vector3 right = moveInputs.x * attachedCamera.transform.right;
         Vector3 forward = moveInputs.y * attachedCamera.transform.forward;
         Vector3 moveDirection = (right + forward).normalized;
