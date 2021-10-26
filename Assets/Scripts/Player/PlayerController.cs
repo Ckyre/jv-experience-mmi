@@ -44,18 +44,22 @@ public class PlayerController : MonoBehaviour, Actor
     [Space]
     [SerializeField] private CameraTP attachedCamera;
     [SerializeField] private Transform bushMesh;
+    [SerializeField] private GameObject toy1, toy2, toy3;
 
     private PlayerState currentState;
     private Rigidbody rb;
+    private Vector3 groundNormal;
     private Animator animator;
     private InteractionPoint listeningInteraction;
     private bool isHidden = false;
+    private bool isGrounded = false;
     private bool isParentedToElevator = false;
     private LayerMask groundMask;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         animator = GetComponentInChildren<Animator>();
         groundMask = LayerMask.GetMask("Ground");
 
@@ -65,6 +69,20 @@ public class PlayerController : MonoBehaviour, Actor
 
     private void Update()
     {
+        // Ground normal
+        RaycastHit groundHit;
+        if(Physics.Raycast(transform.position, -Vector3.up, out groundHit, Mathf.Abs(properties.feetPos.y), groundMask))
+        {
+            //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            groundNormal = groundHit.normal;
+        }
+        else
+        {
+            rb.AddForce((-Vector3.up * properties.gravityForce) * Time.deltaTime);
+            groundNormal = Vector3.zero;
+        }
+
+        // Update current state
         if (currentState != null)
             currentState.OnUpdate();
 
@@ -83,10 +101,6 @@ public class PlayerController : MonoBehaviour, Actor
     {
         if (currentState != null)
             currentState.OnFixedUpdate();
-    }
-
-    private void LateUpdate()
-    {
     }
 
     public void SetState (PlayerState nextState)
@@ -110,27 +124,6 @@ public class PlayerController : MonoBehaviour, Actor
     }
     #endregion
 
-    public void Die()
-    {
-        if (OnDie != null)
-            OnDie();
-
-        SetState(new DeadPlayerState());
-    }
-
-    public bool IsGrounded()
-    {
-        if(Physics.Raycast(transform.position, -Vector3.up, properties.grondDistanceCheck, groundMask))
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
-            return true;
-        }
-
-        // Else apply gravity
-        rb.AddForce((-Vector3.up * properties.gravityForce) * Time.deltaTime);
-        return false;
-    }
-
     #region Getter & setter
     // Setters
     public void SetAttachedCamera (CameraTP newCamera)
@@ -139,6 +132,11 @@ public class PlayerController : MonoBehaviour, Actor
     }
 
     // Getters
+    public Vector3 GetGroundNormal()
+    {
+        return groundNormal;
+    }
+
     public CameraTP GetAttachedCamera()
     {
         return attachedCamera;
@@ -159,23 +157,15 @@ public class PlayerController : MonoBehaviour, Actor
         return isHidden;
     }
 
-    // Events triggers
-    public void OnMoveInvoke()
-    {
-        if (OnMove != null)
-            OnMove();
-    }
-
-    public void OnCrouchInvoke()
-    {
-        if (OnCrouch != null)
-            OnCrouch();
-    }
-
     // Elevator
     public void SetIsParentedToElevator (bool value)
     {
         isParentedToElevator = value;
+        if(value)
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        else
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+
     }
 
     public bool GetIsParentedToElevator()
@@ -187,17 +177,6 @@ public class PlayerController : MonoBehaviour, Actor
     public void SetIsHidden(bool value)
     {
         isHidden = value;
-    }
-
-    // Pickable bush
-    public void ActiveBush (bool active)
-    {
-        bushMesh.gameObject.SetActive(active);
-    }
-
-    public bool IsBushActive()
-    {
-        return bushMesh.gameObject.activeSelf;
     }
 
     // Interactions callback list
@@ -212,10 +191,62 @@ public class PlayerController : MonoBehaviour, Actor
     }
     #endregion
 
+    // Toys
+    public void PickToy (int toyID)
+    {
+        switch (toyID)
+        {
+            case 1:
+                toy1.SetActive(true);
+                break;
+            case 2:
+                toy2.SetActive(true);
+                break;
+            case 3:
+                toy3.SetActive(true);
+                break;
+        }
+    }
+
+    // Events triggers
+    public void OnMoveInvoke()
+    {
+        if (OnMove != null)
+            OnMove();
+    }
+
+    public void OnCrouchInvoke()
+    {
+        if (OnCrouch != null)
+            OnCrouch();
+    }
+
+    // Pickable bush
+    public void ActiveBush(bool active)
+    {
+        bushMesh.gameObject.SetActive(active);
+    }
+
+    public bool IsBushActive()
+    {
+        return bushMesh.gameObject.activeSelf;
+    }
+
+    public void Die()
+    {
+        if (OnDie != null)
+            OnDie();
+
+        SetState(new DeadPlayerState());
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 targetPos = transform.position - new Vector3(0, properties.grondDistanceCheck, 0);
+        Vector3 targetPos = transform.position - new Vector3(0, Mathf.Abs(properties.feetPos.y), 0);
         Gizmos.DrawLine(transform.position, targetPos);
+
+        Vector3 feetPos = (transform.right * properties.feetPos.x) + new Vector3(0, properties.feetPos.y, 0);
+        Gizmos.DrawWireCube(transform.position + feetPos, new Vector3(0.1f, 0.1f, 0.1f));
     }
 }
