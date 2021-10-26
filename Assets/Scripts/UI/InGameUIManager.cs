@@ -10,7 +10,6 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject dialogPanel;
     [SerializeField] private TMP_Text dialogName, dialogContent;
 
-
     private void Awake()
     {
         if(instance == null)
@@ -22,10 +21,14 @@ public class InGameUIManager : MonoBehaviour
     }
 
     // Dialog
-    public void ShowDialog (bool show, string npcName = "")
+    public void ShowDialog (bool show)
     {
         dialogPanel.SetActive(show);
-        if (show) dialogName.text = npcName;
+    }
+
+    public void SetNPCNameText (string name)
+    {
+        dialogName.text = name;
     }
 
     public void SetDialogContent (string text)

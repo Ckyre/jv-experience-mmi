@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-public class Elevator : MonoBehaviour
+public class Elevator : Trigger
 {
     [SerializeField] private float downPositionY = 0.0f;
     [SerializeField] private float upPositionY = 5.0f;
@@ -18,7 +18,10 @@ public class Elevator : MonoBehaviour
     private void Start()
     {
         if (startAtDown)
+        {
             transform.position = new Vector3(transform.position.x, downPositionY, transform.position.z);
+            targetIsUp = true;
+        }
         else
             transform.position = new Vector3(transform.position.x, upPositionY, transform.position.z);
 
@@ -48,30 +51,6 @@ public class Elevator : MonoBehaviour
         }
     }
 
-    public void GoUp()
-    {
-        if (!isMoving)
-        {
-            startPos = transform.position;
-            tAddition = 0;
-            targetPos = new Vector3(transform.position.x, upPositionY, transform.position.z);
-            isMoving = true;
-            targetIsUp = true;
-        }
-    }
-
-    public void GoDown()
-    {
-        if (!isMoving)
-        {
-            startPos = transform.position;
-            tAddition = 0;
-            targetPos = new Vector3(transform.position.x, downPositionY, transform.position.z);
-            isMoving = true;
-            targetIsUp = false;
-        }
-    }
-
     public void Toggle()
     {
         if (!isMoving)
@@ -89,22 +68,20 @@ public class Elevator : MonoBehaviour
         isFreeze = freeze;
     }
 
-    private void OnTriggerEnter (Collider other)
+    protected override void OnPlayerEnter(Collider col)
     {
-        if (other.transform == PlayerController.instance.transform)
-        {
-            PlayerController.instance.transform.parent = transform;
-            PlayerController.instance.SetIsParentedToElevator(true);
-        }
+        base.OnPlayerEnter(col);
+
+        PlayerController.instance.transform.parent = transform;
+        PlayerController.instance.SetIsParentedToElevator(true);
     }
 
-    private void OnTriggerExit (Collider other)
+    protected override void OnPlayerExit(Collider col)
     {
-        if (other.transform == PlayerController.instance.transform)
-        {
-            PlayerController.instance.transform.parent = null;
-            PlayerController.instance.SetIsParentedToElevator(false);
-        }
+        base.OnPlayerExit(col);
+
+        PlayerController.instance.transform.parent = null;
+        PlayerController.instance.SetIsParentedToElevator(false);
     }
 
     #if UNITY_EDITOR
