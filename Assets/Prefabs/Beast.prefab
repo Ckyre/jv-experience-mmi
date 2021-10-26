@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3537484917568604581}
   - component: {fileID: 3537484917568604580}
-  - component: {fileID: 3537484917568604583}
+  - component: {fileID: 764958130}
   m_Layer: 8
   m_Name: Beast trigger
   m_TagString: Untagged
@@ -156,7 +156,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3537484917568604583
+--- !u!114 &764958130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,11 +165,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3537484917568604582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c323f1ec0715b5449345ceaef8175f7, type: 3}
+  m_Script: {fileID: 11500000, guid: f37dcb13b70a82146b4a7df6860dd520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmos: 1
-  playerEnter:
+  onPlayerEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3537484918367701878}
@@ -184,7 +183,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerExit:
+  onPlayerStay:
+    m_PersistentCalls:
+      m_Calls: []
+  onPlayerExit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3537484918367701878}
@@ -199,9 +201,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerStay:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3537484917844451274
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,9 +213,9 @@ GameObject:
   - component: {fileID: 3537484917844451278}
   - component: {fileID: 3537484917844451273}
   - component: {fileID: 3537484917844451272}
-  - component: {fileID: 3537484917844451279}
+  - component: {fileID: 844639160}
   m_Layer: 8
-  m_Name: Detection trigger
+  m_Name: Kill trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +297,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3537484917844451279
+--- !u!114 &844639160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,11 +306,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3537484917844451274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c323f1ec0715b5449345ceaef8175f7, type: 3}
+  m_Script: {fileID: 11500000, guid: f37dcb13b70a82146b4a7df6860dd520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmos: 1
-  playerEnter:
+  onPlayerEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3537484918367701878}
@@ -326,10 +324,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playerExit:
+  onPlayerStay:
     m_PersistentCalls:
       m_Calls: []
-  playerStay:
+  onPlayerExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &3537484918145107779

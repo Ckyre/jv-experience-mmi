@@ -31,6 +31,10 @@ public abstract class PlayerState
     {
     }
 
+    public virtual void OnStayTrigger(Collider other)
+    {
+    }
+
     public virtual void OnExitTrigger (Collider other)
     {
     }

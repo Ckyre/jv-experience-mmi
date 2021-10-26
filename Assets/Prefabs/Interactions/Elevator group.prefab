@@ -70,8 +70,8 @@ GameObject:
   - component: {fileID: 673903312749012155}
   - component: {fileID: 673903312749012148}
   - component: {fileID: 673903312749012149}
-  - component: {fileID: 673903312749012150}
   - component: {fileID: 673903312749012151}
+  - component: {fileID: 8529360750408005717}
   m_Layer: 8
   m_Name: Elevator down interaction
   m_TagString: Untagged
@@ -155,7 +155,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &673903312749012150
+--- !u!135 &673903312749012151
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673903312749012145}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.26
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8529360750408005717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,11 +177,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 673903312749012145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981ff2a0fee3c544980873e599cee349, type: 3}
+  m_Script: {fileID: 11500000, guid: f295d619165052449babf3d5f585bc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngleToInteract: 60
-  playerInteract:
+  onPlayerInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 673903313726037675}
@@ -183,19 +196,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!135 &673903312749012151
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673903312749012145}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.26
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &673903313109469219
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,8 +400,8 @@ GameObject:
   - component: {fileID: 673903314133168356}
   - component: {fileID: 673903314133168357}
   - component: {fileID: 673903314133168358}
-  - component: {fileID: 673903314133168359}
   - component: {fileID: 673903314133168352}
+  - component: {fileID: 416360455926900022}
   m_Layer: 8
   m_Name: Elevator up interaction
   m_TagString: Untagged
@@ -485,7 +485,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &673903314133168359
+--- !u!135 &673903314133168352
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673903314133168354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.26
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &416360455926900022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -494,11 +507,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 673903314133168354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981ff2a0fee3c544980873e599cee349, type: 3}
+  m_Script: {fileID: 11500000, guid: f295d619165052449babf3d5f585bc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngleToInteract: 60
-  playerInteract:
+  onPlayerInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 673903313726037675}
@@ -513,16 +526,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!135 &673903314133168352
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673903314133168354}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.26
-  m_Center: {x: 0, y: 0, z: 0}

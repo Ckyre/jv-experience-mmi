@@ -48,9 +48,9 @@ public class PlayerController : MonoBehaviour, Actor
 
     private PlayerState currentState;
     private Rigidbody rb;
-    private Vector3 groundNormal;
     private Animator animator;
-    private InteractionPoint listeningInteraction;
+    private Interactable listeningInteraction;
+    private Vector3 groundNormal;
     private bool isHidden = false;
     private bool isGrounded = false;
     private bool isParentedToElevator = false;
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour, Actor
                 OnInteract();
 
             if (listeningInteraction != null)
-                listeningInteraction.OnPlayerInteract();
+                listeningInteraction.OnPlayerTryInteract();
         }
     }
 
@@ -116,6 +116,11 @@ public class PlayerController : MonoBehaviour, Actor
     private void OnTriggerEnter(Collider other)
     {
         currentState.OnEnterTrigger(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        currentState.OnStayTrigger(other);
     }
 
     private void OnTriggerExit(Collider other)
@@ -152,6 +157,12 @@ public class PlayerController : MonoBehaviour, Actor
         return animator;
     }
 
+    // Tall grass
+    public void SetIsHidden(bool value)
+    {
+        isHidden = value;
+    }
+
     public bool GetIsHidden()
     {
         return isHidden;
@@ -173,14 +184,8 @@ public class PlayerController : MonoBehaviour, Actor
         return isParentedToElevator;
     }
 
-    // Tall grass
-    public void SetIsHidden(bool value)
-    {
-        isHidden = value;
-    }
-
     // Interactions callback list
-    public void SetInteractionListener (InteractionPoint point)
+    public void SetInteractionListener (Interactable point)
     {
         listeningInteraction = point;
     }

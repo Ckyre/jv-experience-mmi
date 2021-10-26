@@ -11,6 +11,12 @@ public class CrouchPlayerState : WalkPlayerState
         parent.GetAnimator().SetBool("isCrouched", true);
     }
 
+    public override void OnDettach()
+    {
+        base.OnDettach();
+        parent.SetIsHidden(false);
+    }
+
     public override void OnUpdate()
     {
         // Transitions
@@ -26,11 +32,11 @@ public class CrouchPlayerState : WalkPlayerState
     }
 
     // Tall grass
-    public override void OnEnterTrigger (Collider other)
+    public override void OnStayTrigger (Collider other)
     {
         base.OnEnterTrigger(other);
 
-        if(other.GetComponent<HiddingPlace>() != null)
+        if(other.GetComponent<HiddingPlaceTrigger>() != null)
         {
             parent.SetIsHidden(true);
         }
@@ -40,7 +46,7 @@ public class CrouchPlayerState : WalkPlayerState
     {
         base.OnExitTrigger(other);
 
-        if (other.GetComponent<HiddingPlace>() != null)
+        if (other.GetComponent<HiddingPlaceTrigger>() != null)
         {
             parent.SetIsHidden(false);
         }
