@@ -1,46 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Trigger : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public abstract class Trigger : MonoBehaviour
 {
-    [SerializeField] private bool showGizmos = true;
-    [Space]
-    public UnityEvent playerEnter;
-    public UnityEvent playerExit;
-    public UnityEvent playerStay;
+    protected virtual void OnPlayerEnter (Collider col) { }
+    protected virtual void OnPlayerStay (Collider col) { }
+    protected virtual void OnPlayerExit (Collider col) { }
 
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.transform == PlayerController.instance.transform)
-        {
-            playerEnter.Invoke();
-        }
+        OnPlayerEnter(other);
     }
 
-    private void OnTriggerExit (Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
-        if (other.transform == PlayerController.instance.transform)
-        {
-            playerExit.Invoke();
-        }
+        OnPlayerStay(other);
     }
 
-    private void OnTriggerStay (Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.transform == PlayerController.instance.transform)
-        {
-            playerStay.Invoke();
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (showGizmos)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.position, transform.localScale);
-        }
+        OnPlayerExit(other);
     }
 }

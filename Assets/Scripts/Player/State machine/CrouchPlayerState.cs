@@ -36,7 +36,7 @@ public class CrouchPlayerState : WalkPlayerState
     {
         base.OnEnterTrigger(other);
 
-        if(other.GetComponent<HiddingPlace>() != null)
+        if(other.GetComponent<HiddingPlaceTrigger>() != null)
         {
             parent.SetIsHidden(true);
         }
@@ -46,7 +46,7 @@ public class CrouchPlayerState : WalkPlayerState
     {
         base.OnExitTrigger(other);
 
-        if (other.GetComponent<HiddingPlace>() != null)
+        if (other.GetComponent<HiddingPlaceTrigger>() != null)
         {
             parent.SetIsHidden(false);
         }

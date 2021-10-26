@@ -1,20 +1,24 @@
 using UnityEngine;
 
-public class ElevatorBottomTrigger : MonoBehaviour
+public class ElevatorBottomTrigger : Trigger
 {
     [SerializeField] private Elevator elevator;
 
-    private void OnTriggerEnter (Collider other)
+    protected override void OnPlayerEnter(Collider col)
     {
-        if(other.transform == PlayerController.instance.transform)
+        base.OnPlayerEnter(col);
+
+        if (col.transform == PlayerController.instance.transform)
         {
             elevator.Freeze(true);
         }
     }
 
-    private void OnTriggerExit (Collider other)
+    protected override void OnPlayerExit(Collider col)
     {
-        if (other.transform == PlayerController.instance.transform)
+        base.OnPlayerExit(col);
+
+        if (col.transform == PlayerController.instance.transform)
         {
             elevator.Freeze(false);
         }

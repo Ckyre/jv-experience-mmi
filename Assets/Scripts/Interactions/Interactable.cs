@@ -1,37 +1,42 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-public class InteractionPoint : MonoBehaviour
+public abstract class Interactable : Trigger
 {
     [SerializeField, Range(0, 200)] private float maxAngleToInteract = 60.0f;
-    [SerializeField] private UnityEvent playerInteract;
-
     private bool playerInTrigger = false;
 
-    public void OnPlayerInteract()
+    public void OnPlayerTryInteract()
     {
         if (playerInTrigger)
         {
+            // Get player angle
             Vector3 dir = (transform.position - PlayerController.instance.transform.position).normalized;
             float angle = Vector3.Angle(dir, PlayerController.instance.transform.forward);
 
             if (angle < maxAngleToInteract)
-                playerInteract.Invoke();
+                OnPlayerInteract();
         }
     }
 
-    private void OnTriggerEnter (Collider other)
+    public virtual void OnPlayerInteract() { }
+
+    // Enter / exit trigger
+    protected override void OnPlayerEnter (Collider col)
     {
-        if(other.transform == PlayerController.instance.transform)
+        base.OnPlayerEnter(col);
+
+        if (col.transform == PlayerController.instance.transform)
         {
             playerInTrigger = true;
             PlayerController.instance.SetInteractionListener(this);
         }
     }
 
-    private void OnTriggerExit (Collider other)
+    protected override void OnPlayerExit(Collider col)
     {
-        if (other.transform == PlayerController.instance.transform)
+        base.OnPlayerExit(col);
+
+        if (col.transform == PlayerController.instance.transform)
         {
             playerInTrigger = false;
         }
