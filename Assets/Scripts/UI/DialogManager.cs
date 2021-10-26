@@ -16,12 +16,15 @@ public class DialogManager : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] private AudioClip nextLineSound;
+
     private bool inDialog = false;
     private float printTime;
     private int currentLineIndex = -1;
     private List<string> lines;
+    private AudioClip printSound;
 
-    public void StartDialog (float printTime, string npcName, List<string> dialogLines)
+    public void StartDialog (float printTime, string npcName, List<string> dialogLines, AudioClip printSound)
     {
         if (InGameUIManager.instance == null) return;
 
@@ -31,6 +34,7 @@ public class DialogManager : MonoBehaviour
         InGameUIManager.instance.SetNPCNameText(npcName);
 
         lines = dialogLines;
+        this.printSound = printSound;
         this.printTime = printTime;
         currentLineIndex = -1;
         NextDialogLine();
@@ -54,6 +58,7 @@ public class DialogManager : MonoBehaviour
         {
             StopCoroutine("DisplayDialogLine");
             InGameUIManager.instance.SetDialogContent("");
+            InGameUIManager.instance.GetUIAudioSource().PlayOneShot(nextLineSound);
 
             currentLineIndex++;
             StartCoroutine(DisplayDialogLine(lines[currentLineIndex]));
@@ -73,6 +78,7 @@ public class DialogManager : MonoBehaviour
         {
             text += line[c];
             InGameUIManager.instance.SetDialogContent(text);
+            InGameUIManager.instance.GetUIAudioSource().PlayOneShot(printSound);
 
             yield return new WaitForSeconds(printTime/line.Length);
         }

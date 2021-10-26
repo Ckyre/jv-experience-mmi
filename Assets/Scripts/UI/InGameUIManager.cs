@@ -10,6 +10,8 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject dialogPanel;
     [SerializeField] private TMP_Text dialogName, dialogContent;
 
+    private AudioSource uiAudioSource;
+
     private void Awake()
     {
         if(instance == null)
@@ -18,6 +20,11 @@ public class InGameUIManager : MonoBehaviour
         }
 
         ShowDialog(false);
+    }
+
+    private void Start()
+    {
+        uiAudioSource = Camera.main.GetComponentInChildren<AudioSource>();
     }
 
     // Dialog
@@ -34,5 +41,10 @@ public class InGameUIManager : MonoBehaviour
     public void SetDialogContent (string text)
     {
         dialogContent.text = text;
+    }
+
+    public AudioSource GetUIAudioSource()
+    {
+        return uiAudioSource;
     }
 }

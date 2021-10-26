@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,4 +21,19 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public PlayerInputMapping inputCodes;
+    [Space]
+    [SerializeField] private GameObject mobileSourcePrefab;
+
+    public void PlaySoundOnMobileSource (Vector3 position, AudioClip clip)
+    {
+        GameObject mobileSource = Instantiate(mobileSourcePrefab, position, Quaternion.identity);
+        mobileSource.GetComponent<AudioSource>().PlayOneShot(clip);
+        Destroy(mobileSource, clip.length);
+    }
+
+    // Load scenes
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

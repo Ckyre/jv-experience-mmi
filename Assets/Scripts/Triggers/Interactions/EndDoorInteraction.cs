@@ -3,10 +3,14 @@ using UnityEngine;
 public class EndDoorInteraction : Interactable
 {
     [SerializeField] private GameObject bear, rabbit, frog;
+    [Space]
+    [SerializeField] private AudioClip addToySound;
+    [SerializeField] private AudioClip openDoorSound;
 
     private bool bearIsHere = false;
     private bool rabbitIsHere = false;
     private bool frogIsHere = false;
+    private bool alreadyPlayedASound = false;
 
     public override void OnPlayerInteract()
     {
@@ -18,6 +22,8 @@ public class EndDoorInteraction : Interactable
             return;
         }
 
+        alreadyPlayedASound = false;
+
         if(!bearIsHere)
         {
             bearIsHere = PlayerController.instance.GetToy(PickableToyInteraction.ToyType.Bear);
@@ -25,6 +31,12 @@ public class EndDoorInteraction : Interactable
             {
                 PlayerController.instance.PickToy(PickableToyInteraction.ToyType.Bear, false);
                 bear.SetActive(true);
+
+                if (!alreadyPlayedASound)
+                {
+                    alreadyPlayedASound = true;
+                    GameManager.instance.PlaySoundOnMobileSource(transform.position, addToySound);
+                }
             }
         }
         if (!rabbitIsHere)
@@ -34,6 +46,12 @@ public class EndDoorInteraction : Interactable
             {
                 PlayerController.instance.PickToy(PickableToyInteraction.ToyType.Rabbit, false);
                 rabbit.SetActive(true);
+
+                if (!alreadyPlayedASound)
+                {
+                    alreadyPlayedASound = true;
+                    GameManager.instance.PlaySoundOnMobileSource(transform.position, addToySound);
+                }
             }
         }
         if (!frogIsHere)
@@ -43,12 +61,19 @@ public class EndDoorInteraction : Interactable
             {
                 PlayerController.instance.PickToy(PickableToyInteraction.ToyType.Frog, false);
                 frog.SetActive(true);
+
+                if (!alreadyPlayedASound)
+                {
+                    alreadyPlayedASound = true;
+                    GameManager.instance.PlaySoundOnMobileSource(transform.position, addToySound);
+                }
             }
         }
     }
 
     public void OpenDoor()
     {
+        GameManager.instance.PlaySoundOnMobileSource(transform.position, openDoorSound);
         gameObject.SetActive(false);
         // play animation
     }

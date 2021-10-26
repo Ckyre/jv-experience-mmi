@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, Actor
@@ -42,18 +43,26 @@ public class PlayerController : MonoBehaviour, Actor
     public PlayerProperties properties;
     [Space]
     [SerializeField] private CameraTP attachedCamera;
-    [SerializeField] private Transform bushMesh;
+    [SerializeField] private GameObject spineBone;
+    [Space]
+    [SerializeField] private GameObject bushShowcasePrefab;
     [SerializeField] private GameObject toy1, toy2, toy3;
+    [Space]
+    [SerializeField] private AudioSource footSource;
+    [SerializeField] private AudioClip landingClip;
 
     private PlayerState currentState;
     private Rigidbody rb;
     private Animator animator;
     private Interactable listeningInteraction;
     private Vector3 groundNormal;
-    private bool isHidden = false;
-    private bool isGrounded = false;
-    private bool isParentedToElevator = false;
     private LayerMask groundMask;
+
+    private bool isGrounded = false, wasGrounded = false;
+    private bool isHidden = false;
+    private bool isInABush = false;
+    private float pickBushTime;
+    private bool isParentedToElevator = false;
 
     private void Start()
     {
@@ -68,17 +77,21 @@ public class PlayerController : MonoBehaviour, Actor
 
     private void Update()
     {
-        // Ground normal
-        RaycastHit groundHit;
-        if(Physics.Raycast(transform.position, -Vector3.up, out groundHit, Mathf.Abs(properties.feetPos.y), groundMask))
+        wasGrounded = isGrounded;
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, Mathf.Abs(properties.feetPos.y), groundMask);
+
+        if (!isGrounded)
         {
-            //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            groundNormal = groundHit.normal;
+            // Gravity
+            rb.AddForce((-Vector3.up * properties.gravityForce) * Time.deltaTime);
         }
         else
         {
-            rb.AddForce((-Vector3.up * properties.gravityForce) * Time.deltaTime);
-            groundNormal = Vector3.zero;
+            // Landing sound fx
+            if (!wasGrounded)
+            {
+                footSource.PlayOneShot(landingClip);
+            }
         }
 
         // Update current state
@@ -93,7 +106,14 @@ public class PlayerController : MonoBehaviour, Actor
 
             if (listeningInteraction != null)
                 listeningInteraction.OnPlayerTryInteract();
+
+            if (IsBushActive() && (Time.time - pickBushTime) > 2.0f)
+            {
+                Debug.Log("throw bush");
+                ActiveBush(false);
+            }
         }
+
     }
 
     private void FixedUpdate()
@@ -241,14 +261,35 @@ public class PlayerController : MonoBehaviour, Actor
     }
 
     // Pickable bush
-    public void ActiveBush(bool active)
+    public void ActiveBush (bool active)
     {
-        bushMesh.gameObject.SetActive(active);
+        if (active)
+        {
+            if (!isInABush)
+            {
+                isInABush = true;
+                pickBushTime = Time.time;
+                Instantiate(bushShowcasePrefab, spineBone.transform);
+            }
+        }
+        else
+        {
+            if (isInABush)
+            {
+                isInABush = false;
+
+                Rigidbody bushInstance = spineBone.GetComponentInChildren<Rigidbody>();
+                bushInstance.constraints = RigidbodyConstraints.None;
+                bushInstance.transform.parent = null;
+                bushInstance.AddForce(attachedCamera.transform.forward * 1.8f, ForceMode.Impulse);
+                bushInstance.GetComponent<TimeoutDestroy>().StartDestroying();
+            }
+        }
     }
 
     public bool IsBushActive()
     {
-        return bushMesh.gameObject.activeSelf;
+        return isInABush;
     }
 
     public void Die()

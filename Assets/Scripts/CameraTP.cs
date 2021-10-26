@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraTP : MonoBehaviour
@@ -19,13 +17,18 @@ public class CameraTP : MonoBehaviour
     private float zoom = 5.0f;
     private float targetZoom; // for lerp zoom
 
-    void Awake()
+    private void Awake()
     {
         cameraChild = GetComponentInChildren<Camera>();
         cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
     }
 
-    void Update()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
     {
         zoom = Mathf.Lerp(zoom, targetZoom, Time.deltaTime * zoomSpeed);
 
@@ -43,8 +46,7 @@ public class CameraTP : MonoBehaviour
             if (Vector3.Distance(target.transform.position, cameraChild.transform.position) > 0.5f)
                 cameraChild.transform.position = hit.point + (cameraDirection * 1.5f);
         }
-        else
-            cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
+        else cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
 
         // Rotate by mouse
         Vector2 mouseInputs = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -62,6 +64,14 @@ public class CameraTP : MonoBehaviour
             transform.eulerAngles = finalRotation;
         else if (finalRotation.x > (360 - maxYAngle) && finalRotation.x < 360)
             transform.eulerAngles = finalRotation;
+
+        #if UNITY_EDITOR
+        // Unlock curosor
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        #endif
     }
 
     public void SetZoom (float value)
@@ -69,6 +79,7 @@ public class CameraTP : MonoBehaviour
         targetZoom = value;
     }
 
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (cameraChild)
@@ -79,5 +90,5 @@ public class CameraTP : MonoBehaviour
             Gizmos.DrawLine(target.transform.position, collisionCheckPoint);
         }
     }
-
+    #endif
 }
