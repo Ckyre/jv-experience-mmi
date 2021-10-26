@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, Actor
 {
     #region Singleton
     public static PlayerController instance;
+
     private void Awake()
     {
         if (instance == null)
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour, Actor
 
     #region Logic
     public PlayerProperties properties;
-    public PlayerInputMapping inputCodes;
     [Space]
     [SerializeField] private CameraTP attachedCamera;
     [SerializeField] private Transform bushMesh;
@@ -87,7 +86,7 @@ public class PlayerController : MonoBehaviour, Actor
             currentState.OnUpdate();
 
         // Events invoke
-        if (Input.GetKeyDown(inputCodes.interact))
+        if (Input.GetKeyDown(GameManager.instance.inputCodes.interact))
         {
             if (OnInteract != null)
                 OnInteract();
@@ -197,20 +196,35 @@ public class PlayerController : MonoBehaviour, Actor
     #endregion
 
     // Toys
-    public void PickToy (int toyID)
+    public void PickToy (PickableToyInteraction.ToyType type, bool value = true)
     {
-        switch (toyID)
+        switch (type)
         {
-            case 1:
-                toy1.SetActive(true);
+            case PickableToyInteraction.ToyType.Bear:
+                toy1.SetActive(value);
                 break;
-            case 2:
-                toy2.SetActive(true);
+            case PickableToyInteraction.ToyType.Rabbit:
+                toy2.SetActive(value);
                 break;
-            case 3:
-                toy3.SetActive(true);
+            case PickableToyInteraction.ToyType.Frog:
+                toy3.SetActive(value);
                 break;
         }
+    }
+
+    public bool GetToy (PickableToyInteraction.ToyType type)
+    {
+        switch (type)
+        {
+            case PickableToyInteraction.ToyType.Bear:
+                return toy1.activeSelf;
+            case PickableToyInteraction.ToyType.Rabbit:
+                return toy2.activeSelf;
+            case PickableToyInteraction.ToyType.Frog:
+                return toy3.activeSelf;
+        }
+
+        return false;
     }
 
     // Events triggers

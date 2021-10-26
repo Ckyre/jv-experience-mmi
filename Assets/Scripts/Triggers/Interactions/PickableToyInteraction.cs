@@ -9,7 +9,7 @@ public class PickableToyInteraction : Interactable
     {
         base.OnPlayerInteract();
 
-        PlayerController.instance.PickToy((int)type);
+        PlayerController.instance.PickToy(type);
         gameObject.SetActive(false);
     }
 }

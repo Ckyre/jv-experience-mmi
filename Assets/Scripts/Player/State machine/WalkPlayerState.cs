@@ -17,7 +17,7 @@ public class WalkPlayerState : PlayerState
         base.OnUpdate();
 
         // Transitions
-        if (Input.GetKeyDown(parent.inputCodes.crouch))
+        if (Input.GetKeyDown(GameManager.instance.inputCodes.crouch))
             parent.SetState(new CrouchPlayerState());
 
         bool isMoving = moveInputs != Vector2.zero;
@@ -30,7 +30,7 @@ public class WalkPlayerState : PlayerState
 
     public void Move (float speed)
     {
-        moveInputs = parent.inputCodes.GetMoveAxis();
+        moveInputs = GameManager.instance.inputCodes.GetMoveAxis();
 
         // Rotation toward camera
         if (moveInputs != Vector2.zero)
