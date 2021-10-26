@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Blockout_Blockout_Shader_Base
   m_Shader: {fileID: 4800000, guid: 1bfe0b648f9c4b04cb0ebbfaa5d15701, type: 3}
   m_ShaderKeywords: 
@@ -38,4 +39,5 @@ Material:
     - _Metallic: 0.087
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0.47058824, g: 0.47058824, b: 0.91764706, a: 1}
+    - _Color: {r: 0.51526433, g: 0.91764706, b: 0.47058824, a: 1}
+  m_BuildTextureStacks: []
