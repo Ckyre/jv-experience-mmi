@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 110671929}
   - component: {fileID: 110671928}
   - component: {fileID: 110671927}
+  - component: {fileID: 110671932}
   m_Layer: 0
   m_Name: Toy 2
   m_TagString: Untagged
@@ -237,6 +238,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -32.841, z: 0}
+--- !u!114 &110671932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110671926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981ff2a0fee3c544980873e599cee349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleToInteract: 60
+  playerInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 110671927}
+        m_TargetAssemblyTypeName: PickableToy, Assembly-CSharp
+        m_MethodName: OnPlayerPick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &481116985
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +541,7 @@ GameObject:
   - component: {fileID: 1140921074}
   - component: {fileID: 1140921073}
   - component: {fileID: 1140921072}
+  - component: {fileID: 1140921077}
   m_Layer: 0
   m_Name: Toy 3
   m_TagString: Untagged
@@ -608,6 +638,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1140921077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140921071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981ff2a0fee3c544980873e599cee349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleToInteract: 60
+  playerInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1140921072}
+        m_TargetAssemblyTypeName: PickableToy, Assembly-CSharp
+        m_MethodName: OnPlayerPick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1168111084
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +717,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0eb661e06bcb7d54c9e54f0a3feb086b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1234,6 +1292,7 @@ GameObject:
   - component: {fileID: 1638832537}
   - component: {fileID: 1638832536}
   - component: {fileID: 1638832535}
+  - component: {fileID: 1638832540}
   m_Layer: 0
   m_Name: Toy 1
   m_TagString: Untagged
@@ -1330,6 +1389,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638832540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638832534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981ff2a0fee3c544980873e599cee349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngleToInteract: 60
+  playerInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1638832535}
+        m_TargetAssemblyTypeName: PickableToy, Assembly-CSharp
+        m_MethodName: OnPlayerPick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1639251779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,7 +1786,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0f57c4c9885c13044a389da768b1b634, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

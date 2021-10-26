@@ -118,6 +118,11 @@ public class PlayerController : MonoBehaviour, Actor
         currentState.OnEnterTrigger(other);
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        currentState.OnStayTrigger(other);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         currentState.OnExitTrigger(other);
@@ -152,6 +157,12 @@ public class PlayerController : MonoBehaviour, Actor
         return animator;
     }
 
+    // Tall grass
+    public void SetIsHidden(bool value)
+    {
+        isHidden = value;
+    }
+
     public bool GetIsHidden()
     {
         return isHidden;
@@ -171,12 +182,6 @@ public class PlayerController : MonoBehaviour, Actor
     public bool GetIsParentedToElevator()
     {
         return isParentedToElevator;
-    }
-
-    // Tall grass
-    public void SetIsHidden(bool value)
-    {
-        isHidden = value;
     }
 
     // Interactions callback list

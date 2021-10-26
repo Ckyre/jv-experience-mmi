@@ -9,5 +9,6 @@ public class PickableToy : MonoBehaviour
     public void OnPlayerPick()
     {
         PlayerController.instance.PickToy(toyID);
+        gameObject.SetActive(false);
     }
 }
