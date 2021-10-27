@@ -7,6 +7,7 @@ public class PlayerProperties : ScriptableObject
     public float walkSpeed = 10.0f;
     public float crouchWalkSpeed = 5.0f;
     public float rotateSpeed = 10.0f;
+    public float groundCheckRadius = 0.5f;
     public float gravityForce = 800.0f;
     public Vector2 feetPos;
     [Header("Camera")]
