@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 4913896536088994313, guid: dd9166a6921ab574a8a187f2f9bb8db2, type: 3}
       propertyPath: inputCodes
       value: 
-      objectReference: {fileID: 11400000, guid: 5a5b156f6c2509549949604209b6c951, type: 2}
+      objectReference: {fileID: 11400000, guid: 4f07eebc904dfdc4bb53424b9e3365a5, type: 2}
     - target: {fileID: 4913896536088994314, guid: dd9166a6921ab574a8a187f2f9bb8db2, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -2188,6 +2188,10 @@ PrefabInstance:
     - target: {fileID: 8498341103402531129, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498341104943512388, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}
+      propertyPath: sensivity
+      value: 10.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 768fb354d8c82c04eac5af5888a1fdc5, type: 3}

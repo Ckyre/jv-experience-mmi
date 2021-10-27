@@ -5,7 +5,7 @@ public class SectionUI : MonoBehaviour
     [SerializeField] private GameObject container;
     [SerializeField] private SectionUI backSection;
 
-    private void Start()
+    private void Awake()
     {
         Active(false);
     }
