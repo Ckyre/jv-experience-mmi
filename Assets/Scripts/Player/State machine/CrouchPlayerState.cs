@@ -20,7 +20,7 @@ public class CrouchPlayerState : WalkPlayerState
     public override void OnUpdate()
     {
         // Transitions
-        if (Input.GetKeyDown(parent.inputCodes.crouch))
+        if (Input.GetKeyDown(GameManager.instance.inputCodes.crouch))
             parent.SetState(new WalkPlayerState());
 
         // Animations

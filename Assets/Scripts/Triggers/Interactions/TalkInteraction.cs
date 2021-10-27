@@ -6,6 +6,7 @@ public class TalkInteraction : Interactable
     [SerializeField] private string npcName;
     [SerializeField] private List<string> dialogLines = new List<string>();
     [SerializeField] private float printTime = 1.0f;
+    [SerializeField] private AudioClip printSound;
 
     private bool inDialog = false;
 
@@ -22,7 +23,7 @@ public class TalkInteraction : Interactable
     private void StartDialog()
     {
         inDialog = true;
-        DialogManager.instance.StartDialog(printTime, npcName, dialogLines);
+        DialogManager.instance.StartDialog(printTime, npcName, dialogLines, printSound);
     }
 
     private void NextLine()
