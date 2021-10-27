@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, Actor
@@ -58,7 +57,8 @@ public class PlayerController : MonoBehaviour, Actor
     private Vector3 groundNormal;
     private LayerMask groundMask;
 
-    private bool isGrounded = false, wasGrounded = false;
+    private bool isGrounded = false;
+    private float lastGroundTime;
     private bool isHidden = false;
     private bool isInABush = false;
     private float pickBushTime;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour, Actor
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         animator = GetComponentInChildren<Animator>();
-        groundMask = LayerMask.GetMask("Ground");
+        groundMask = LayerMask.GetMask("Ground", "Default");
 
         ActiveBush(false);
         SetState(new WalkPlayerState());
@@ -77,9 +77,8 @@ public class PlayerController : MonoBehaviour, Actor
 
     private void Update()
     {
-        wasGrounded = isGrounded;
-        isGrounded = Physics.Raycast(transform.position, -Vector3.up, Mathf.Abs(properties.feetPos.y), groundMask);
-
+        isGrounded = Physics.CheckSphere(transform.position + new Vector3(0, -Mathf.Abs(properties.feetPos.y), 0), properties.groundCheckRadius, groundMask);
+            
         if (!isGrounded)
         {
             // Gravity
@@ -88,10 +87,12 @@ public class PlayerController : MonoBehaviour, Actor
         else
         {
             // Landing sound fx
-            if (!wasGrounded)
+            if ((Time.time - lastGroundTime) > 0.4f)
             {
                 footSource.PlayOneShot(landingClip);
             }
+
+            lastGroundTime = Time.time;
         }
 
         // Update current state
@@ -109,7 +110,6 @@ public class PlayerController : MonoBehaviour, Actor
 
             if (IsBushActive() && (Time.time - pickBushTime) > 2.0f)
             {
-                Debug.Log("throw bush");
                 ActiveBush(false);
             }
         }
@@ -300,13 +300,15 @@ public class PlayerController : MonoBehaviour, Actor
         SetState(new DeadPlayerState());
     }
 
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Vector3 targetPos = transform.position - new Vector3(0, Mathf.Abs(properties.feetPos.y), 0);
         Gizmos.DrawLine(transform.position, targetPos);
 
         Vector3 feetPos = (transform.right * properties.feetPos.x) + new Vector3(0, properties.feetPos.y, 0);
-        Gizmos.DrawWireCube(transform.position + feetPos, new Vector3(0.1f, 0.1f, 0.1f));
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, -Mathf.Abs(properties.feetPos.y), 0), properties.groundCheckRadius);
     }
+    #endif
 }

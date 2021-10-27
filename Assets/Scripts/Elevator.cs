@@ -14,6 +14,7 @@ public class Elevator : Trigger
     private bool targetIsUp = false;
     private Vector3 targetPos, startPos;
     private float tAddition = 0;
+    private bool firstActivation = true;
 
     private void Start()
     {
@@ -66,7 +67,11 @@ public class Elevator : Trigger
     {
         if (!isMoving)
         {
-            targetIsUp = !targetIsUp;
+            if (!firstActivation)
+                targetIsUp = !targetIsUp;
+            else
+                firstActivation = false;
+
             startPos = transform.position;
             tAddition = 0;
             targetPos = new Vector3(transform.position.x, (targetIsUp ? upPositionY : downPositionY), transform.position.z);
