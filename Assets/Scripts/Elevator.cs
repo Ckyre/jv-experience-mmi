@@ -51,10 +51,14 @@ public class Elevator : Trigger
             }
         }
 
-        if(Vector3.Distance(transform.position, PlayerController.instance.transform.position) > 5.0f)
+        if (PlayerController.instance.GetIsParentedToElevator())
         {
-            PlayerController.instance.transform.parent = null;
-            PlayerController.instance.SetIsParentedToElevator(false);
+            if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) > 60.0f)
+            {
+                PlayerController.instance.transform.parent = null;
+                PlayerController.instance.SetIsParentedToElevator(false);
+                Debug.Log(Vector3.Distance(transform.position, PlayerController.instance.transform.position));
+            }
         }
     }
 
