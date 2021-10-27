@@ -43,8 +43,8 @@ public class CameraTP : MonoBehaviour
         RaycastHit hit;
         if (Physics.Linecast(target.transform.position, collisionCheckPoint, out hit, collisionMask))
         {
-            if (Vector3.Distance(target.transform.position, cameraChild.transform.position) > 0.5f)
-                cameraChild.transform.position = hit.point + (cameraDirection * 1.5f);
+            if (Vector3.Distance(target.transform.position, cameraChild.transform.position) > 1f)
+                cameraChild.transform.position = Vector3.Lerp(cameraChild.transform.position, hit.point + (cameraDirection * 1.5f), 10f * Time.deltaTime);
         }
         else cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
 

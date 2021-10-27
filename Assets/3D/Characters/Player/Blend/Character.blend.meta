@@ -1,43 +1,12 @@
 fileFormatVersion: 2
-guid: 2c8155eb56bdedb4d9f8da912c66b203
+guid: 0ef117248762ba7438ec6ba727bd9958
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -656852028648737406
-    second: metarig.002|metarigAction.001
-  - first:
-      74: 7159442819202395009
-    second: metarig.002|metarigAction.002
-  - first:
-      74: -8363365146866671058
-    second: metarig.002|metarigAction.003
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Botte.003
-    second: {fileID: 2100000, guid: fb0abe28e76e6a3469baef82c9891fc3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Echarpe.002
-    second: {fileID: 2100000, guid: 6d9edb3c28f0243459e14cb3c8b03c1b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 4dc90d6e3ad8fba4a94ef8edab1a4f7f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Veste.003
-    second: {fileID: 2100000, guid: 48c1f7b2779ad4447a3727b9216f5712, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Visage.002
-    second: {fileID: 2100000, guid: 7e679aa00a3739945a82ef3882f8083f, type: 2}
+      74: -623603649343465320
+    second: Scene
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
