@@ -26,6 +26,7 @@ public class Elevator : Trigger
             transform.position = new Vector3(transform.position.x, upPositionY, transform.position.z);
 
         targetPos = transform.position;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
     }
 
     private void Update()
@@ -48,6 +49,12 @@ public class Elevator : Trigger
                 transform.position = Vector3.Lerp(startPos, targetPos, tAddition + (Time.deltaTime * downSpeed));
                 tAddition += Time.deltaTime * downSpeed;
             }
+        }
+
+        if(Vector3.Distance(transform.position, PlayerController.instance.transform.position) > 5.0f)
+        {
+            PlayerController.instance.transform.parent = null;
+            PlayerController.instance.SetIsParentedToElevator(false);
         }
     }
 
@@ -94,6 +101,7 @@ public class Elevator : Trigger
             else
                 transform.position = new Vector3(transform.position.x, upPositionY, transform.position.z);
         }
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(transform.position.x, downPositionY, transform.position.z), new Vector3(transform.position.x, upPositionY, transform.position.z));
