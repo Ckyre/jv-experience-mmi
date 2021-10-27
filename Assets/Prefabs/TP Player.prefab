@@ -2886,9 +2886,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8498341103567982505}
+  - component: {fileID: 8498341103567982507}
   - component: {fileID: 8498341103567982500}
   - component: {fileID: 8498341103567982501}
-  - component: {fileID: 8498341103567982507}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -2913,6 +2913,27 @@ Transform:
   m_Father: {fileID: 8498341103402531129}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8498341103567982507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8498341103567982498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c1c61525dc00040850500ab5b87a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  properties: {fileID: 11400000, guid: d38c53ee47ae890418f1312a95798502, type: 2}
+  attachedCamera: {fileID: 8498341104943512388}
+  spineBone: {fileID: 638364767344198867}
+  bushShowcasePrefab: {fileID: 2810447023942821953, guid: cdee638d978ee734fa74d3bb7fed5195, type: 3}
+  toy1: {fileID: 1168111084}
+  toy2: {fileID: 1847190279}
+  toy3: {fileID: 1631540110}
+  footSource: {fileID: 600544561}
+  landingClip: {fileID: 8300000, guid: 85f311e2a183ff54aaa90359235d5387, type: 3}
 --- !u!136 &8498341103567982500
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2943,27 +2964,6 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &8498341103567982507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498341103567982498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c1c61525dc00040850500ab5b87a6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  properties: {fileID: 11400000, guid: d38c53ee47ae890418f1312a95798502, type: 2}
-  attachedCamera: {fileID: 8498341104943512388}
-  spineBone: {fileID: 638364767344198867}
-  bushShowcasePrefab: {fileID: 2810447023942821953, guid: cdee638d978ee734fa74d3bb7fed5195, type: 3}
-  toy1: {fileID: 1168111084}
-  toy2: {fileID: 1847190279}
-  toy3: {fileID: 1631540110}
-  footSource: {fileID: 600544561}
-  landingClip: {fileID: 8300000, guid: 85f311e2a183ff54aaa90359235d5387, type: 3}
 --- !u!1 &8498341104141884656
 GameObject:
   m_ObjectHideFlags: 0
