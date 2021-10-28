@@ -1,0 +1,3 @@
+Fog texture : https://pngimg.com/download/55220
+Double sided shader : Ciconia studio
+Quick outilne : Chris Nolet

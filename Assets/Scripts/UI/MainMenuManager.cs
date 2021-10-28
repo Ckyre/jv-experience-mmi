@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private SectionUI mainSection, settingsSection;
+    [SerializeField] private SectionUI mainSection, settingsSection, creditSection;
     private SectionUI currentSection;
     
     private AsyncOperation gameSceneOperation;
@@ -46,6 +46,11 @@ public class MainMenuManager : MonoBehaviour
     public void OnSettingsButton()
     {
         SetSection(settingsSection);
+    }
+
+    public void OnCreditsButton()
+    {
+        SetSection(creditSection);
     }
 
     public void OnQuitButton()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4264565194522085396}
   - component: {fileID: 3210250786536199988}
   m_Layer: 7
-  m_Name: ground-mangrove.003
+  m_Name: ground-mangrove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
