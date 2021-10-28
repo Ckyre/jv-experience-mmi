@@ -9,6 +9,7 @@ public class CrouchPlayerState : WalkPlayerState
         parent.OnCrouchInvoke();
         attachedCamera.SetZoom(parent.properties.crouchCameraZoom);
         parent.GetAnimator().SetBool("isCrouched", true);
+        parent.PlayCrouchSound();
     }
 
     public override void OnDettach()

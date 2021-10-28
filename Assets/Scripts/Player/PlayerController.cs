@@ -48,7 +48,10 @@ public class PlayerController : MonoBehaviour, Actor
     [SerializeField] private GameObject toy1, toy2, toy3;
     [Space]
     [SerializeField] private AudioSource footSource;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip landingClip;
+    [SerializeField] private AudioClip crouchClip;
 
     private PlayerState currentState;
     private Rigidbody rb;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour, Actor
     private bool isInABush = false;
     private float pickBushTime;
     private bool isParentedToElevator = false;
+    private bool walkInWater = false;
 
     private void Start()
     {
@@ -290,6 +294,33 @@ public class PlayerController : MonoBehaviour, Actor
     public bool IsBushActive()
     {
         return isInABush;
+    }
+
+    public void SetIsInWater (bool value)
+    {
+        walkInWater = value;
+        GetComponentInChildren<PlayerAnimatorEvents>().SetIsInWater(value);
+    }
+
+    // Sounds
+    public void PlayCrouchSound()
+    {
+        PlaySFX(crouchClip);
+    }
+
+    public void PlaySFX (AudioClip clip)
+    {
+        sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlayMusic (AudioClip music)
+    {
+        musicSource.PlayOneShot(music);
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 
     public void Die()

@@ -4,7 +4,8 @@ public class EndDoorInteraction : Interactable
 {
     [SerializeField] private GameObject bear, rabbit, frog;
     [Space]
-    [SerializeField] private AudioClip addToySound;
+    [SerializeField] private AudioClip successAddToySound;
+    [SerializeField] private AudioClip failedAddToySound;
     [SerializeField] private AudioClip openDoorSound;
 
     private bool bearIsHere = false;
@@ -35,7 +36,7 @@ public class EndDoorInteraction : Interactable
                 if (!alreadyPlayedASound)
                 {
                     alreadyPlayedASound = true;
-                    GameManager.instance.PlaySoundOnMobileSource(transform.position, addToySound);
+                    GameManager.instance.PlaySoundOnMobileSource(transform.position, successAddToySound);
                 }
             }
         }
@@ -50,7 +51,7 @@ public class EndDoorInteraction : Interactable
                 if (!alreadyPlayedASound)
                 {
                     alreadyPlayedASound = true;
-                    GameManager.instance.PlaySoundOnMobileSource(transform.position, addToySound);
+                    GameManager.instance.PlaySoundOnMobileSource(transform.position, successAddToySound);
                 }
             }
         }
@@ -65,9 +66,15 @@ public class EndDoorInteraction : Interactable
                 if (!alreadyPlayedASound)
                 {
                     alreadyPlayedASound = true;
-                    GameManager.instance.PlaySoundOnMobileSource(transform.position, addToySound);
+                    GameManager.instance.PlaySoundOnMobileSource(transform.position, successAddToySound);
                 }
             }
+        }
+
+        if (!alreadyPlayedASound)
+        {
+            alreadyPlayedASound = true;
+            GameManager.instance.PlaySoundOnMobileSource(transform.position, failedAddToySound);
         }
     }
 

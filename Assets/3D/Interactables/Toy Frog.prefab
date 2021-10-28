@@ -5063,5 +5063,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAngleToInteract: 60
   type: 2
-  pickupSound: {fileID: 8300000, guid: 000454555dd563d419e5fdad28a2293a, type: 3}
+  pickupSound: {fileID: 8300000, guid: 9fe1391359420824db16848f09fb83c2, type: 3}
   playAnimation: 1

@@ -282,7 +282,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214271940003825580}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.4, y: 0.8, z: -0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -309,8 +309,9 @@ MonoBehaviour:
   bear: {fileID: 1214271940330537013}
   rabbit: {fileID: 1214271939599547019}
   frog: {fileID: 1214271939333648170}
-  addToySound: {fileID: 8300000, guid: 000454555dd563d419e5fdad28a2293a, type: 3}
-  openDoorSound: {fileID: 8300000, guid: ad84c631199e15a4d961f962fb0e79cc, type: 3}
+  successAddToySound: {fileID: 8300000, guid: 4af27d6fea3ca204d881c837653f63f5, type: 3}
+  failedAddToySound: {fileID: 8300000, guid: da007305b1af41c49ad3a7ce4c5c4c77, type: 3}
+  openDoorSound: {fileID: 8300000, guid: 9fe1391359420824db16848f09fb83c2, type: 3}
 --- !u!135 &1214271940003825586
 SphereCollider:
   m_ObjectHideFlags: 0
