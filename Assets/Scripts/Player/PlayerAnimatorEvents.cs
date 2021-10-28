@@ -12,12 +12,15 @@ public class PlayerAnimatorEvents : MonoBehaviour
     // Animator events
     public void AnimatorPlayFootstep()
     {
-        if (!isInWater)
-            footstepSource.PlayOneShot(footstepsSounds[Random.Range(0, footstepsSounds.Count)]);
-        else
-            footstepSource.PlayOneShot(waterFootstepsSounds[Random.Range(0, waterFootstepsSounds.Count)]);
-        
-        footstepSource.pitch = Random.Range(0.8f, 1.2f);
+        if (PlayerController.instance.GetIsGrounded())
+        {
+            if (!isInWater)
+                footstepSource.PlayOneShot(footstepsSounds[Random.Range(0, footstepsSounds.Count)]);
+            else
+                footstepSource.PlayOneShot(waterFootstepsSounds[Random.Range(0, waterFootstepsSounds.Count)]);
+
+            footstepSource.pitch = Random.Range(0.8f, 1.2f);
+        }
     }
 
     public void SetIsInWater (bool value)

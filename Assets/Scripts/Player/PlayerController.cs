@@ -166,6 +166,11 @@ public class PlayerController : MonoBehaviour, Actor
         return collider;
     }
 
+    public bool GetIsGrounded()
+    {
+        return isGrounded;
+    }
+
     public CameraTP GetAttachedCamera()
     {
         return attachedCamera;
@@ -326,6 +331,9 @@ public class PlayerController : MonoBehaviour, Actor
 
     public void Die()
     {
+        if (currentState is DeadPlayerState)
+            return;
+
         if (OnDie != null)
             OnDie();
 
