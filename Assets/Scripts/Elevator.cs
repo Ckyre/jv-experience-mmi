@@ -58,7 +58,6 @@ public class Elevator : Trigger
             {
                 PlayerController.instance.transform.parent = null;
                 PlayerController.instance.SetIsParentedToElevator(false);
-                Debug.Log(Vector3.Distance(transform.position, PlayerController.instance.transform.position));
             }
         }
     }
