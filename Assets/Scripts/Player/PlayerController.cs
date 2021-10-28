@@ -51,11 +51,11 @@ public class PlayerController : MonoBehaviour, Actor
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip landingClip;
-    [SerializeField] private AudioClip crouchClip;
 
     private PlayerState currentState;
     private Rigidbody rb;
     private Animator animator;
+    private PlayerAnimatorEvents animatorEvents;
     private Interactable listeningInteraction;
     private CapsuleCollider collider;
     private LayerMask groundMask;
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour, Actor
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         animator = GetComponentInChildren<Animator>();
+        animatorEvents = animator.GetComponent<PlayerAnimatorEvents>();
         groundMask = LayerMask.GetMask("Ground", "Default");
         collider = GetComponent<CapsuleCollider>();
 
@@ -164,6 +165,11 @@ public class PlayerController : MonoBehaviour, Actor
     public CapsuleCollider GetCollider()
     {
         return collider;
+    }
+
+    public PlayerAnimatorEvents GetAnimatorEvents()
+    {
+        return animatorEvents;
     }
 
     public bool GetIsGrounded()
@@ -309,11 +315,6 @@ public class PlayerController : MonoBehaviour, Actor
     }
 
     // Sounds
-    public void PlayCrouchSound()
-    {
-        PlaySFX(crouchClip);
-    }
-
     public void PlaySFX (AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);

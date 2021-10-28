@@ -9,7 +9,7 @@ public class CrouchPlayerState : WalkPlayerState
         parent.OnCrouchInvoke();
         attachedCamera.SetZoom(parent.properties.crouchCameraZoom);
         parent.GetAnimator().SetBool("isCrouched", true);
-        parent.PlayCrouchSound();
+        parent.GetAnimatorEvents().AnimatorCrouch(0.2f);
 
         parent.GetCollider().height = 1.4f;
         parent.GetCollider().center = new Vector3(0, -0.3f, 0);
@@ -18,6 +18,8 @@ public class CrouchPlayerState : WalkPlayerState
     public override void OnDettach()
     {
         base.OnDettach();
+
+        parent.GetAnimatorEvents().AnimatorCrouch(0.2f);
 
         parent.SetIsHidden(false);
         parent.GetCollider().height = 1.9f;
