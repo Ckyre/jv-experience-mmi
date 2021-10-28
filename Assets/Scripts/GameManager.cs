@@ -36,4 +36,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void RestartGameScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadEndGame()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

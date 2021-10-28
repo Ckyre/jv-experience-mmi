@@ -13,7 +13,7 @@ public abstract class Interactable : Trigger
             Vector3 dir = (transform.position - PlayerController.instance.transform.position).normalized;
             float angle = Vector3.Angle(dir, PlayerController.instance.transform.forward);
 
-            if (angle < maxAngleToInteract)
+            if (angle < maxAngleToInteract || Vector3.Distance(transform.position, PlayerController.instance.transform.position) < 1.2f)
                 OnPlayerInteract();
         }
     }

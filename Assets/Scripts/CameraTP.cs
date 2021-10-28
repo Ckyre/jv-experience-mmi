@@ -16,6 +16,7 @@ public class CameraTP : MonoBehaviour
 
     private float zoom = 5.0f;
     private float targetZoom; // for lerp zoom
+    private bool isLocked = false;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class CameraTP : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -48,30 +50,33 @@ public class CameraTP : MonoBehaviour
         }
         else cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
 
-        // Rotate by mouse
-        Vector2 mouseInputs = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        if (invertY == false) mouseInputs.y *= -1;
-
-        Vector3 finalRotation = transform.eulerAngles + new Vector3(mouseInputs.y * (sensivity * 20) * Time.deltaTime, mouseInputs.x * (sensivity * 20) * Time.deltaTime);
-
-        // Clamp angle
-        if (finalRotation.x > 360)
-            finalRotation.x -= 360;
-        else if (finalRotation.x < 0)
-            finalRotation.x += 360;
-
-        if (finalRotation.x > 0 && finalRotation.x < maxYAngle)
-            transform.eulerAngles = finalRotation;
-        else if (finalRotation.x > (360 - maxYAngle) && finalRotation.x < 360)
-            transform.eulerAngles = finalRotation;
-
-        #if UNITY_EDITOR
-        // Unlock curosor
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isLocked)
         {
-            Cursor.lockState = CursorLockMode.None;
+            // Rotate by mouse
+            Vector2 mouseInputs = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            if (invertY == false) mouseInputs.y *= -1;
+
+            Vector3 finalRotation = transform.eulerAngles + new Vector3(mouseInputs.y * (sensivity * 20) * Time.deltaTime, mouseInputs.x * (sensivity * 20) * Time.deltaTime);
+
+            // Clamp angle
+            if (finalRotation.x > 360)
+                finalRotation.x -= 360;
+            else if (finalRotation.x < 0)
+                finalRotation.x += 360;
+
+            if (finalRotation.x > 0 && finalRotation.x < maxYAngle)
+                transform.eulerAngles = finalRotation;
+            else if (finalRotation.x > (360 - maxYAngle) && finalRotation.x < 360)
+                transform.eulerAngles = finalRotation;
+
+            #if UNITY_EDITOR
+            // Unlock curosor
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            #endif
         }
-        #endif
     }
 
     public void SetZoom (float value)
@@ -79,7 +84,17 @@ public class CameraTP : MonoBehaviour
         targetZoom = value;
     }
 
-    #if UNITY_EDITOR
+    public void IsLock(bool value)
+    {
+        isLocked = value;
+        Cursor.visible = value;
+
+        #if UNITY_EDITOR
+        Cursor.lockState = CursorLockMode.None;
+        #endif
+    }
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (cameraChild)

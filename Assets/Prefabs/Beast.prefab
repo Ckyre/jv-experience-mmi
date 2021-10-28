@@ -311,6 +311,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlayerEnter:
     m_PersistentCalls:
+      m_Calls: []
+  onPlayerStay:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3537484918367701878}
         m_TargetAssemblyTypeName: BeastController, Assembly-CSharp
@@ -324,9 +327,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onPlayerStay:
-    m_PersistentCalls:
-      m_Calls: []
   onPlayerExit:
     m_PersistentCalls:
       m_Calls: []

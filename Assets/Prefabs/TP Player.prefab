@@ -1535,11 +1535,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b7de5603176808a4185102881b5ecb41, type: 3}
   - {fileID: 8300000, guid: 82811cee2bb241144ba6e84a5c6d0e6b, type: 3}
   waterFootstepsSounds:
-  - {fileID: 8300000, guid: 690937b0010439543b7c72a7fa4517fa, type: 3}
+  - {fileID: 8300000, guid: e2fae804ce100264cbd050aa777b9f83, type: 3}
   - {fileID: 8300000, guid: a241a304d4316784ab01e7d2d11e2ad3, type: 3}
   - {fileID: 8300000, guid: 9e3623aa537652a4a9498aa4a4c5236d, type: 3}
   - {fileID: 8300000, guid: 9a050c6e4d07e154bbbcc56e273c3c79, type: 3}
-  - {fileID: 8300000, guid: e2fae804ce100264cbd050aa777b9f83, type: 3}
 --- !u!1 &5235298739728785948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,10 +2680,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 18a0266541a46ae44a154cc4e971898d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.29020864
-  m_Height: 1.8882918
+  m_Radius: 0.3
+  m_Height: 1.9
   m_Direction: 1
-  m_Center: {x: -0.02, y: -0.055854082, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8498341103567982501
 Rigidbody:
   m_ObjectHideFlags: 0
