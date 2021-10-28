@@ -8,8 +8,6 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         Load();
-        file.Data.playerName = "GABRIEL";
-        file.Data.playerLevel = 44;
     }
 
     public void Load()

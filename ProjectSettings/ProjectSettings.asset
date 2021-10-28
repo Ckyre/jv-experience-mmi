@@ -12,10 +12,10 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: jv-experiences-mmi
-  defaultCursor: {fileID: 0}
-  cursorHotspot: {x: 0, y: 0}
+  companyName: DropTop
+  productName: Pretty Little Fears
+  defaultCursor: {fileID: 2800000, guid: ba882c5039699714b9efa3e3837ebc95, type: 3}
+  cursorHotspot: {x: 0.5, y: 0.5}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
