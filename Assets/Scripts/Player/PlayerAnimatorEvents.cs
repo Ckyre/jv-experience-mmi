@@ -15,7 +15,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
     // Animator events
     public void AnimatorPlayFootstep()
     {
-        if (PlayerController.instance.GetIsGrounded())
+        if (PlayerController.instance.GetGroundDistance() < 1.5f)
         {
             if (!isInWater)
                 footstepSource.PlayOneShot(footstepsSounds[Random.Range(0, footstepsSounds.Count)]);

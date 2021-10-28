@@ -205,10 +205,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4913896536088994313, guid: dd9166a6921ab574a8a187f2f9bb8db2, type: 3}
-      propertyPath: inputCodes
-      value: 
-      objectReference: {fileID: 11400000, guid: 4f07eebc904dfdc4bb53424b9e3365a5, type: 2}
     - target: {fileID: 4913896536088994314, guid: dd9166a6921ab574a8a187f2f9bb8db2, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -1353,6 +1349,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1639251780}
     m_Modifications:
+    - target: {fileID: 140150556, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 146123093, guid: 90184779567660f4fa45514d8bc92614, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 673903313284792216, guid: 90184779567660f4fa45514d8bc92614, type: 3}
       propertyPath: m_Name
       value: Elevator group
@@ -1548,6 +1552,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 551747601, guid: 053495ad3c763084d82a1e374cc78be3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551747603, guid: 053495ad3c763084d82a1e374cc78be3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 37faad713cc3a6543b24c7e77f21bc81, type: 3}
     - target: {fileID: 2816930478429226627, guid: 053495ad3c763084d82a1e374cc78be3, type: 3}
       propertyPath: m_Name
       value: In Game UI

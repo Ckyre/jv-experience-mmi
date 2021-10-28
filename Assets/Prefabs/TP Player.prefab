@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8498341103567982505}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &600544559
 GameObject:
@@ -59,7 +59,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8498341103567982505}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &600544561
 AudioSource:
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825148215}
   - component: {fileID: 825148216}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Music audio source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922949959}
   - component: {fileID: 922949960}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UI audio source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.015
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -440,7 +440,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8498341103567982505}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1600631627
 AudioSource:
@@ -759,7 +759,7 @@ Transform:
   - {fileID: 4660826471601570238}
   - {fileID: 8384083719950597561}
   m_Father: {fileID: 8498341103567982505}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8424266540931770750
 Animator:
@@ -1722,7 +1722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8498341103567982505}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5397828725856910984
 GameObject:
@@ -2539,10 +2539,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8498341103380522443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.116, z: 0.607}
+  m_LocalPosition: {x: 0, y: 0, z: 1.231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8498341104943512389}
+  m_Father: {fileID: 8498341103567982505}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &8498341103380522445
@@ -2557,8 +2557,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.34
-  m_Range: 4.82
+  m_Intensity: 0.4
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2669,6 +2669,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8498341103380522442}
   - {fileID: 503679523874316573}
   - {fileID: 600544560}
   - {fileID: 489898007}
@@ -2699,6 +2700,7 @@ MonoBehaviour:
   footSource: {fileID: 600544561}
   sfxSource: {fileID: 1600631627}
   musicSource: {fileID: 825148216}
+  uiSource: {fileID: 922949960}
   landingClip: {fileID: 8300000, guid: e11a2194192ff064198b7a1169e7f13f, type: 3}
 --- !u!136 &8498341103567982500
 CapsuleCollider:
@@ -2762,7 +2764,7 @@ Transform:
   - {fileID: 922949959}
   - {fileID: 825148215}
   m_Father: {fileID: 8498341104943512389}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8498341104141884658
 Camera:
@@ -2843,7 +2845,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8498341103380522442}
   - {fileID: 8498341104141884661}
   m_Father: {fileID: 8498341103402531129}
   m_RootOrder: 0

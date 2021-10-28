@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour, Actor
     [Space]
     [SerializeField] private AudioSource footSource;
     [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource musicSource, uiSource;
     [SerializeField] private AudioClip landingClip;
 
     private PlayerState currentState;
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour, Actor
     private bool isHidden = false;
     private bool isInABush = false;
     private float pickBushTime;
+    private float groundDistance;
     private bool isParentedToElevator = false;
     private bool walkInWater = false;
 
@@ -84,7 +85,15 @@ public class PlayerController : MonoBehaviour, Actor
     private void Update()
     {
         isGrounded = Physics.CheckSphere(transform.position + new Vector3(0, -Mathf.Abs(properties.feetPos.y), 0), properties.groundCheckRadius, groundMask);
-            
+        
+        // Ground distance
+        RaycastHit groundHit;
+        if(Physics.Raycast(transform.position + new Vector3(0, -Mathf.Abs(properties.feetPos.y), 0), -Vector3.up, out groundHit, Mathf.Infinity, groundMask))
+            groundDistance = Vector3.Distance(transform.position, groundHit.point);
+        else
+            groundDistance = -1;
+
+
         if (!isGrounded)
         {
             // Gravity
@@ -165,6 +174,16 @@ public class PlayerController : MonoBehaviour, Actor
     public CapsuleCollider GetCollider()
     {
         return collider;
+    }
+
+    public float GetGroundDistance()
+    {
+        return groundDistance;
+    }
+
+    public AudioSource GetUIAudioSource()
+    {
+        return uiSource;
     }
 
     public PlayerAnimatorEvents GetAnimatorEvents()

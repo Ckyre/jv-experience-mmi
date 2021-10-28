@@ -58,7 +58,7 @@ public class DialogManager : MonoBehaviour
         {
             StopCoroutine("DisplayDialogLine");
             InGameUIManager.instance.SetDialogContent("");
-            InGameUIManager.instance.GetUIAudioSource().PlayOneShot(nextLineSound);
+            PlayerController.instance.GetUIAudioSource().PlayOneShot(nextLineSound);
 
             currentLineIndex++;
             StartCoroutine(DisplayDialogLine(lines[currentLineIndex]));
@@ -78,7 +78,7 @@ public class DialogManager : MonoBehaviour
         {
             text += line[c];
             InGameUIManager.instance.SetDialogContent(text);
-            InGameUIManager.instance.GetUIAudioSource().PlayOneShot(printSound);
+            PlayerController.instance.GetUIAudioSource().PlayOneShot(printSound);
 
             yield return new WaitForSeconds(printTime/line.Length);
         }
