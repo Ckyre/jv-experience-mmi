@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour, Actor
     private Rigidbody rb;
     private Animator animator;
     private Interactable listeningInteraction;
-    private Vector3 groundNormal;
+    private CapsuleCollider collider;
     private LayerMask groundMask;
 
     private bool isGrounded = false;
@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour, Actor
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         animator = GetComponentInChildren<Animator>();
         groundMask = LayerMask.GetMask("Ground", "Default");
+        collider = GetComponent<CapsuleCollider>();
 
         ActiveBush(false);
         SetState(new WalkPlayerState());
@@ -160,9 +161,9 @@ public class PlayerController : MonoBehaviour, Actor
     }
 
     // Getters
-    public Vector3 GetGroundNormal()
+    public CapsuleCollider GetCollider()
     {
-        return groundNormal;
+        return collider;
     }
 
     public CameraTP GetAttachedCamera()

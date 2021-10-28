@@ -10,12 +10,18 @@ public class CrouchPlayerState : WalkPlayerState
         attachedCamera.SetZoom(parent.properties.crouchCameraZoom);
         parent.GetAnimator().SetBool("isCrouched", true);
         parent.PlayCrouchSound();
+
+        parent.GetCollider().height = 1.4f;
+        parent.GetCollider().center = new Vector3(0, -0.3f, 0);
     }
 
     public override void OnDettach()
     {
         base.OnDettach();
+
         parent.SetIsHidden(false);
+        parent.GetCollider().height = 1.9f;
+        parent.GetCollider().center = Vector3.zero;
     }
 
     public override void OnUpdate()
