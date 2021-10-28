@@ -38,7 +38,7 @@ Material:
     - _Depth_Fade: 3.37
     - _Fresnel_Colour_Bias: 0
     - _Fresnel_Colour_Scale: 1
-    - _Gloss: 0.571
+    - _Gloss: 0.297
     - _Glossiness: 0.5
     - _Metallic: 0
     - _Refraction: 2.2
@@ -54,5 +54,5 @@ Material:
     - _Color_1: {r: 0.121254124, g: 0.745283, b: 0, a: 0.628}
     - _Color_2: {r: 0.6509434, g: 0.5345102, b: 0, a: 1}
     - _Depth_Color: {r: 0.043000367, g: 0.3773585, b: 0, a: 1}
-    - _SpecColor: {r: 0.15190327, g: 1, b: 0, a: 1}
+    - _SpecColor: {r: 0, g: 1, b: 0.1308515, a: 1}
   m_BuildTextureStacks: []
