@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class HelpButtonUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject helpContainer;
 
-    // Update is called once per frame
-    void Update()
+    public void ToggleHelp()
     {
-        
+        helpContainer.SetActive(!helpContainer.activeSelf);
     }
 }

@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
@@ -15,9 +17,11 @@ public class MainMenuManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private SectionUI mainSection, settingsSection, creditSection;
+    [SerializeField] private SectionUI mainSection, settingsSection, creditSection, playSection;
+    [SerializeField] private Slider musicVolume, sfxVolume;
+    [SerializeField] private TMP_Text hightPerformanceButtonText;
+
     private SectionUI currentSection;
-    
     private AsyncOperation gameSceneOperation;
 
     private void Start()
@@ -36,11 +40,24 @@ public class MainMenuManager : MonoBehaviour
 
         currentSection = nextSection;
         currentSection.Active(true);
+
+        if(nextSection == mainSection)
+        {
+            foreach(ButtonUI btn in mainSection.GetComponentsInChildren<ButtonUI>())
+            {
+                btn.DefaultState();
+            }
+        }
+    }
+
+    public void StartGame()
+    {
+        gameSceneOperation.allowSceneActivation = true;
     }
 
     public void OnStartButton()
     {
-        gameSceneOperation.allowSceneActivation = true;
+        SetSection(playSection);
     }
 
     public void OnSettingsButton()
@@ -56,5 +73,30 @@ public class MainMenuManager : MonoBehaviour
     public void OnQuitButton()
     {
         Application.Quit();
+    }
+
+    // Settings
+    public void OnMusicVolumeSlider()
+    {
+        GameManager.gameData.musicVolume = musicVolume.value;
+    }
+
+    public void OnSFXVolumeSlider()
+    {
+        GameManager.gameData.sfxVolume = sfxVolume.value;
+    }
+
+    public void OnHighPerformanceToggle()
+    {
+        GameManager.gameData.highPerformance = !GameManager.gameData.highPerformance;
+
+        if (GameManager.gameData.highPerformance)
+        {
+            hightPerformanceButtonText.text = "Haute performance : ON";
+        }
+        else
+        {
+            hightPerformanceButtonText.text = "Haute performance : OFF";
+        }
     }
 }

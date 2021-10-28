@@ -7,6 +7,7 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image bgImage;
     [SerializeField] private TMP_Text text;
+    [SerializeField] private bool primaryIsBlack = false, onlyTextMode = false;
 
     private static Color black = new Color(0.1803922f, 0.1568628f, 0.1647059f);
     private static Color white = new Color(0.9686275f, 1, 0.9686275f);
@@ -27,9 +28,15 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         DefaultState();
     }
 
-    private void DefaultState()
+    public void DefaultState()
     {
-        bgImage.color = white;
+        if(bgImage != null)
+        {
+            if (primaryIsBlack)
+                bgImage.color = black;
+            else
+                bgImage.color = white;
+        }
 
         if(text != null)
             text.color = black;
@@ -37,9 +44,15 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void HoverState()
     {
-        bgImage.color = red;
-
         if (text != null)
-            text.color = white;
+        {
+            if(onlyTextMode)
+                text.color = red;
+            else
+                text.color = white;
+        }
+
+        if (bgImage != null && !onlyTextMode)
+            bgImage.color = red;
     }
 }

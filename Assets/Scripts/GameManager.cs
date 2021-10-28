@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            gameData = new GameData();
         }
         else
         {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public PlayerInputMapping inputCodes;
+    public static GameData gameData;
     [Space]
     [SerializeField] private GameObject mobileSourcePrefab;
 
