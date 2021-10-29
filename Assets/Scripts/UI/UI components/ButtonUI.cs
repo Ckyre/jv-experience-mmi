@@ -24,8 +24,10 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (MainMenuManager.instance != null)
             MainMenuManager.instance.GetAudioSource().PlayOneShot(GameManager.instance.uiHoverSound);
-        else
+        else if (InGameUIManager.instance != null)
             PlayerController.instance.GetUIAudioSource().PlayOneShot(GameManager.instance.uiHoverSound);
+        else
+            OutroUIManager.instance.PlaySound(GameManager.instance.uiHoverSound);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -65,7 +67,9 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (MainMenuManager.instance != null)
             MainMenuManager.instance.GetAudioSource().PlayOneShot(GameManager.instance.uiClickSound);
-        else
+        else if(InGameUIManager.instance != null)
             PlayerController.instance.GetUIAudioSource().PlayOneShot(GameManager.instance.uiClickSound);
+        else
+            OutroUIManager.instance.PlaySound(GameManager.instance.uiClickSound);
     }
 }
