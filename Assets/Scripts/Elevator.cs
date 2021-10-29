@@ -8,7 +8,7 @@ public class Elevator : Trigger
     [SerializeField] private bool startAtDown = true;
     [SerializeField] private float upSpeed = 5.0f;
     [SerializeField] private float downSpeed = 5.0f;
-
+    
     private bool isMoving = false;
     private bool isFreeze = false;
     private bool targetIsUp = false;
