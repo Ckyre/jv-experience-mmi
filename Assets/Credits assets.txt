@@ -1,4 +1,0 @@
-Fog texture : https://pngimg.com/download/55220
-Double sided shader : Ciconia studio
-Quick outilne : Chris Nolet
-UI Blur : https://github.com/radardentan/Unity_Shader_UI_Blur
