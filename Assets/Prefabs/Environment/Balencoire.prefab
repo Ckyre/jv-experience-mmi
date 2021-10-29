@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1094086643106249864}
   - component: {fileID: 622696849100610401}
+  - component: {fileID: 2551283796656215629}
+  - component: {fileID: 3978426374224808617}
   m_Layer: 0
   m_Name: Balencoire
   m_TagString: Untagged
@@ -44,8 +46,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.699113, y: 10.280308, z: 6.378486}
-  m_Center: {x: 5.5944276, y: 4.6401553, z: 0.11985606}
+  m_Size: {x: 1.3883734, y: 10.280308, z: 6.3784857}
+  m_Center: {x: -0.038100675, y: 4.6401553, z: 0.11985619}
+--- !u!65 &2551283796656215629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316706274696275506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0132972, y: 10.280308, z: 6.3784857}
+  m_Center: {x: 11.114045, y: 4.6401553, z: 0.11985619}
+--- !u!65 &3978426374224808617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316706274696275506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.043997, y: 1.3900037, z: 6.3784857}
+  m_Center: {x: 5.6830587, y: 9.08527, z: 0.11985619}
 --- !u!1 &7574105585889886142
 GameObject:
   m_ObjectHideFlags: 0
