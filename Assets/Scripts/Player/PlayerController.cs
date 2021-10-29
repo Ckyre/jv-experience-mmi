@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerController : MonoBehaviour, Actor
 {
@@ -77,6 +78,11 @@ public class PlayerController : MonoBehaviour, Actor
         animatorEvents = animator.GetComponent<PlayerAnimatorEvents>();
         groundMask = LayerMask.GetMask("Ground", "Default");
         collider = GetComponent<CapsuleCollider>();
+
+        if (GameManager.gameData.highPerformance)
+        {
+            attachedCamera.GetComponentInChildren<PostProcessLayer>().enabled = false;
+        }
 
         ActiveBush(false);
         SetState(new WalkPlayerState());
