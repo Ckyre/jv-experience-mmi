@@ -8,6 +8,8 @@ public class DeadPlayerState : PlayerState
         parent.GetRigidbody().velocity = Vector3.zero;
         parent.GetAnimator().speed = 0;
 
+        Debug.Log("Player died");
+
         InGameUIManager.instance.ActiveDeathScreen();
         PlayerController.instance.GetAttachedCamera().IsLock(true);
     }

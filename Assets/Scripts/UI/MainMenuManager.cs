@@ -20,12 +20,17 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private SectionUI mainSection, settingsSection, creditSection, playSection;
     [SerializeField] private Slider musicVolume, sfxVolume;
     [SerializeField] private TMP_Text hightPerformanceButtonText;
+    [SerializeField] private AudioSource uiSource, musicSource;
 
     private SectionUI currentSection;
     private AsyncOperation gameSceneOperation;
+    private float startUISourceVolume, startMusicSourceVolume;
 
     private void Start()
     {
+        startUISourceVolume = uiSource.volume;
+        startMusicSourceVolume = musicSource.volume;
+
         SetSection(mainSection);
 
         // Load game scene async
@@ -79,17 +84,22 @@ public class MainMenuManager : MonoBehaviour
     public void OnMusicVolumeSlider()
     {
         GameManager.gameData.musicVolume = musicVolume.value;
+        // Apply to scene
+        musicSource.volume = startMusicSourceVolume * GameManager.gameData.musicVolume;
     }
 
     public void OnSFXVolumeSlider()
     {
         GameManager.gameData.sfxVolume = sfxVolume.value;
+        // Apply to scene
+        uiSource.volume = startUISourceVolume * GameManager.gameData.sfxVolume;
     }
 
     public void OnHighPerformanceToggle()
     {
         GameManager.gameData.highPerformance = !GameManager.gameData.highPerformance;
 
+        // Toggle text update
         if (GameManager.gameData.highPerformance)
         {
             hightPerformanceButtonText.text = "Haute performance : ON";
@@ -98,5 +108,10 @@ public class MainMenuManager : MonoBehaviour
         {
             hightPerformanceButtonText.text = "Haute performance : OFF";
         }
+    }
+
+    public AudioSource GetAudioSource()
+    {
+        return uiSource;
     }
 }

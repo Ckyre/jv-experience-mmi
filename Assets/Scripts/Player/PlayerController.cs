@@ -49,13 +49,13 @@ public class PlayerController : MonoBehaviour, Actor
     [Space]
     [SerializeField] private AudioSource footSource;
     [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource musicSource, uiSource;
     [SerializeField] private AudioClip landingClip;
-    [SerializeField] private AudioClip crouchClip;
 
     private PlayerState currentState;
     private Rigidbody rb;
     private Animator animator;
+    private PlayerAnimatorEvents animatorEvents;
     private Interactable listeningInteraction;
     private CapsuleCollider collider;
     private LayerMask groundMask;
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour, Actor
     private bool isHidden = false;
     private bool isInABush = false;
     private float pickBushTime;
+    private float groundDistance;
     private bool isParentedToElevator = false;
     private bool walkInWater = false;
 
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour, Actor
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         animator = GetComponentInChildren<Animator>();
+        animatorEvents = animator.GetComponent<PlayerAnimatorEvents>();
         groundMask = LayerMask.GetMask("Ground", "Default");
         collider = GetComponent<CapsuleCollider>();
 
@@ -83,7 +85,15 @@ public class PlayerController : MonoBehaviour, Actor
     private void Update()
     {
         isGrounded = Physics.CheckSphere(transform.position + new Vector3(0, -Mathf.Abs(properties.feetPos.y), 0), properties.groundCheckRadius, groundMask);
-            
+        
+        // Ground distance
+        RaycastHit groundHit;
+        if(Physics.Raycast(transform.position + new Vector3(0, -Mathf.Abs(properties.feetPos.y), 0), -Vector3.up, out groundHit, Mathf.Infinity, groundMask))
+            groundDistance = Vector3.Distance(transform.position, groundHit.point);
+        else
+            groundDistance = -1;
+
+
         if (!isGrounded)
         {
             // Gravity
@@ -164,6 +174,21 @@ public class PlayerController : MonoBehaviour, Actor
     public CapsuleCollider GetCollider()
     {
         return collider;
+    }
+
+    public float GetGroundDistance()
+    {
+        return groundDistance;
+    }
+
+    public AudioSource GetUIAudioSource()
+    {
+        return uiSource;
+    }
+
+    public PlayerAnimatorEvents GetAnimatorEvents()
+    {
+        return animatorEvents;
     }
 
     public bool GetIsGrounded()
@@ -309,11 +334,6 @@ public class PlayerController : MonoBehaviour, Actor
     }
 
     // Sounds
-    public void PlayCrouchSound()
-    {
-        PlaySFX(crouchClip);
-    }
-
     public void PlaySFX (AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);

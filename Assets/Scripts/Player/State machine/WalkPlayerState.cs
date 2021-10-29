@@ -54,7 +54,7 @@ public class WalkPlayerState : PlayerState
         // Apply move force
         if (parent.GetIsParentedToElevator())
         {
-            Vector3 moveStep = new Vector3(moveDirection.x * 3 * Time.fixedDeltaTime, 0, moveDirection.z * 3 * Time.fixedDeltaTime);
+            Vector3 moveStep = new Vector3(moveDirection.x * 3 * Time.deltaTime, 0, moveDirection.z * 3 * Time.deltaTime);
             parent.transform.localPosition += moveStep;
             rb.velocity = Vector3.zero;
         }

@@ -9,8 +9,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: visage
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _DETAILSOURCE_SPECULARALPHA _ENABLETRIPLANARPROJECTION_ON _SOURCE_SPECULARALPHA
-    _TRIPLANARSPACEPROJECTION_OBJECTSPACE _USEAOFROMMAINPROPERTIES_ON _USEEMISSIONFROMMAINPROPERTIES_ON
+  m_ShaderKeywords: _DETAILSOURCE_SPECULARALPHA _ENABLETRIPLANARPROJECTION_ON _GLOSSYREFLECTIONS_OFF
+    _SOURCE_SPECULARALPHA _SPECULARHIGHLIGHTS_OFF _TRIPLANARSPACEPROJECTION_OBJECTSPACE
+    _USEAOFROMMAINPROPERTIES_ON _USEEMISSIONFROMMAINPROPERTIES_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -89,7 +90,7 @@ Material:
     - _EnableTriplanarProjection: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _IntensityMask: 1
     - _InvertABaseColor: 0
     - _InvertMask: 0
@@ -100,7 +101,7 @@ Material:
     - _Saturation: 0
     - _SmoothnessTextureChannel: 0
     - _Source: 0
-    - _SpecularHighlights: 1
+    - _SpecularHighlights: 0
     - _SpecularIntensity: 0.2
     - _SpreadDetailMap: 0
     - _SrcBlend: 1

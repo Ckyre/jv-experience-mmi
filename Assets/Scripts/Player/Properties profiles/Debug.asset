@@ -16,7 +16,7 @@ MonoBehaviour:
   crouchWalkSpeed: 150
   rotateSpeed: 10
   groundCheckRadius: 0.27
-  gravityForce: 1800
-  feetPos: {x: 0, y: -0.79}
+  gravityForce: 2400
+  feetPos: {x: 0, y: -0.75}
   cameraZoom: 3
   crouchCameraZoom: 4.5

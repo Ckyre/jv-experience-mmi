@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
     public static GameData gameData;
     [Space]
     [SerializeField] private GameObject mobileSourcePrefab;
+    [Header("UI")]
+    public AudioClip uiClickSound;
+    public AudioClip uiHoverSound;
 
     public void PlaySoundOnMobileSource (Vector3 position, AudioClip clip)
     {
@@ -33,7 +37,24 @@ public class GameManager : MonoBehaviour
         Destroy(mobileSource, clip.length);
     }
 
+    public void ApplySettings ()
+    {
+        foreach (AudioSource source in FindObjectsOfType<AudioSource>())
+        {
+            // Set volumes
+            if (source.tag == "MusicAudioSource")
+                source.volume *= gameData.musicVolume;
+            else // SFXAudioSource
+                source.volume *= gameData.sfxVolume;
+        }
+    }
+
     // Load scenes
+    private void OnLevelWasLoaded(int level)
+    {
+        ApplySettings();
+    }
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);

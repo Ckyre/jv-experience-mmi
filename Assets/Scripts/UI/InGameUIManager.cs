@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
@@ -12,10 +13,10 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private TMP_Text dialogName, dialogContent;
     [Header("Death")]
     [SerializeField] private Animator deathPanelAnimator;
-    [SerializeField] private TMP_Text deathMessage;
-    [SerializeField] private Button restartButton;
+    [Header("Pause")]
+    [SerializeField] private GameObject pausePanel;
 
-    private AudioSource uiAudioSource;
+    private bool isPaused = false;
 
     private void Awake()
     {
@@ -27,10 +28,15 @@ public class InGameUIManager : MonoBehaviour
         ShowDialog(false);
     }
 
-    private void Start()
+    private void Update()
     {
-        uiAudioSource = Camera.main.GetComponentInChildren<AudioSource>();
-        restartButton.gameObject.SetActive(false);
+        if (Input.GetKeyDown(GameManager.instance.inputCodes.close))
+        {
+            if (isPaused)
+                OnResumeButton();
+            else
+                PauseGame();
+        }
     }
 
     // Dialog
@@ -49,38 +55,37 @@ public class InGameUIManager : MonoBehaviour
         dialogContent.text = text;
     }
 
-    public AudioSource GetUIAudioSource()
-    {
-        return uiAudioSource;
-    }
-
     // Death panel
     public void ActiveDeathScreen()
     {
+        Time.timeScale = 1f;
         deathPanelAnimator.SetTrigger("PlayerDie");
-        StartCoroutine(DeathMessageAnimation());
-    }
-
-    private IEnumerator DeathMessageAnimation()
-    {
-        deathMessage.text = "";
-        string message = "Vous êtes mort...";
-        float delay = 0.0f;
-        for(int c = 0; c < message.Length; c++)
-        {
-            deathMessage.text += message[c];
-
-            if (c > message.Length - 4) delay = 0.5f;
-            yield return new WaitForSeconds(0.15f + delay);
-        }
-        deathMessage.text = message;
-
-        yield return new WaitForSeconds(0.5f);
-        restartButton.gameObject.SetActive(true);
     }
 
     public void OnRestartButton()
     {
+        Time.timeScale = 1f;
         GameManager.instance.RestartGameScene();
+    }
+
+    public void OnQuitButton()
+    {
+        Time.timeScale = 1f;
+        GameManager.instance.LoadMainMenu();
+    }
+
+    // Pause panel
+    public void PauseGame()
+    {
+        pausePanel.SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0f;
+    }
+
+    public void OnResumeButton()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        pausePanel.SetActive(false);
     }
 }

@@ -15,8 +15,8 @@ TagManager:
   - Ground
   - Trigger
   - Ignore Player
-  - 
-  - 
+  - SFXAudioSource
+  - MusicAudioSource
   - 
   - 
   - 

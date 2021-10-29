@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputCodes: {fileID: 11400000, guid: 4f07eebc904dfdc4bb53424b9e3365a5, type: 2}
   mobileSourcePrefab: {fileID: 4237294910864407273, guid: 24f9a68b29b97314c87362e11771f87c, type: 3}
+  uiClickSound: {fileID: 8300000, guid: 213eb56defe050e46abf44627cc312d0, type: 3}
+  uiHoverSound: {fileID: 8300000, guid: fcd609eaca8ae2341864f128e65b2129, type: 3}

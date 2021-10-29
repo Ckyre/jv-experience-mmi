@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image bgImage;
     [SerializeField] private TMP_Text text;
@@ -21,6 +21,11 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         HoverState();
+
+        if (MainMenuManager.instance != null)
+            MainMenuManager.instance.GetAudioSource().PlayOneShot(GameManager.instance.uiHoverSound);
+        else
+            PlayerController.instance.GetUIAudioSource().PlayOneShot(GameManager.instance.uiHoverSound);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -54,5 +59,13 @@ public class ButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (bgImage != null && !onlyTextMode)
             bgImage.color = red;
+    }
+
+    public void OnPointerClick (PointerEventData eventData)
+    {
+        if (MainMenuManager.instance != null)
+            MainMenuManager.instance.GetAudioSource().PlayOneShot(GameManager.instance.uiClickSound);
+        else
+            PlayerController.instance.GetUIAudioSource().PlayOneShot(GameManager.instance.uiClickSound);
     }
 }
