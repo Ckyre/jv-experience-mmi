@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AZERTY
   m_EditorClassIdentifier: 
   interact: 101
-  crouch: 99
+  crouch: 306
   moveForward: 122
   moveBackward: 115
   moveRight: 100

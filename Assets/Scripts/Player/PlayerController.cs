@@ -80,9 +80,16 @@ public class PlayerController : MonoBehaviour, Actor
         groundMask = LayerMask.GetMask("Ground", "Default");
         collider = GetComponent<CapsuleCollider>();
 
+        // Hight performances mode
         if (GameManager.gameData.highPerformance)
         {
             attachedCamera.GetComponentInChildren<PostProcessLayer>().enabled = false;
+
+            foreach (Light light in FindObjectsOfType<Light>())
+            {
+                if (light.type == LightType.Point)
+                    light.enabled = false;
+            }
         }
 
         ActiveBush(false);
@@ -352,6 +359,7 @@ public class PlayerController : MonoBehaviour, Actor
         if(musicID != currentMusicID)
         {
             currentMusicID = musicID;
+            StopCoroutine("ChangeMusic");
             StartCoroutine(ChangeMusic(music));
         }
     }

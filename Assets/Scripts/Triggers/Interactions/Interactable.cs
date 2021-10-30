@@ -32,6 +32,16 @@ public abstract class Interactable : Trigger
         }
     }
 
+    protected override void OnPlayerStay(Collider col)
+    {
+        base.OnPlayerStay(col);
+
+        if(col.transform == PlayerController.instance.transform)
+        {
+            InGameUIManager.instance.SetInteractionUI(true);
+        }
+    }
+
     protected override void OnPlayerExit(Collider col)
     {
         base.OnPlayerExit(col);
@@ -39,6 +49,7 @@ public abstract class Interactable : Trigger
         if (col.transform == PlayerController.instance.transform)
         {
             playerInTrigger = false;
+            InGameUIManager.instance.SetInteractionUI(false);
         }
     }
 }

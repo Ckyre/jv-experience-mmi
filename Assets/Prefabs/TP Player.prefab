@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &211951568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211951569}
+  m_Layer: 6
+  m_Name: Bush parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211951569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211951568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.358, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 489898007}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &489898006
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +56,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 211951569}
   m_Father: {fileID: 8498341103567982505}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2692,7 +2723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   properties: {fileID: 11400000, guid: d38c53ee47ae890418f1312a95798502, type: 2}
   attachedCamera: {fileID: 8498341104943512388}
-  spineBone: {fileID: 489898006}
+  spineBone: {fileID: 211951568}
   bushShowcasePrefab: {fileID: 2810447023942821953, guid: cdee638d978ee734fa74d3bb7fed5195, type: 3}
   toy1: {fileID: 8877516519954716692}
   toy2: {fileID: 5397828725856910984}
@@ -2920,14 +2951,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8498341104943512386}
-  m_LocalRotation: {x: 0.01661166, y: -0.89629644, z: -0.060748182, w: -0.43896058}
-  m_LocalPosition: {x: 3.39, y: 0.64, z: -8.53}
+  m_LocalRotation: {x: 0.061388776, y: 0.031779233, z: -0.01406092, w: 0.9975088}
+  m_LocalPosition: {x: 2.62, y: 0.149, z: -5.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8498341104141884661}
   m_Father: {fileID: 8498341103402531129}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -7.093, y: -232.271, z: 1.36}
+  m_LocalEulerAnglesHint: {x: 7.086, y: 3.563, z: -1.394}
 --- !u!114 &8498341104943512388
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class PickableToyInteraction : Interactable
             animator.SetTrigger("PickUp");
 
         PlayerController.instance.PickToy(type);
-        StartCoroutine(DelayedUnactive(0.5f));
+        StartCoroutine(DelayedUnactive(0.3f));
     }
 
     private IEnumerator DelayedUnactive (float delay)

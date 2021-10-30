@@ -1987,7 +1987,6 @@ GameObject:
   - component: {fileID: 9120686600862361659}
   - component: {fileID: 9120686600862361656}
   - component: {fileID: 9120686600862361658}
-  - component: {fileID: 3706014049915755517}
   m_Layer: 7
   m_Name: Elevator
   m_TagString: Untagged
@@ -2002,8 +2001,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9120686600862361657}
-  m_LocalRotation: {x: -0, y: 0.9914446, z: -0, w: 0.13052888}
-  m_LocalPosition: {x: 0, y: -10.64, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.3220494, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8071678689752367688}
@@ -2066,22 +2065,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.84, y: 0.1123561, z: 1.84}
   m_Center: {x: 0, y: 0.15, z: 0.01478374}
---- !u!54 &3706014049915755517
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9120686600862361657}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 1
-  m_Constraints: 126
-  m_CollisionDetection: 3
 --- !u!1 &9128790763844608598
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,6 @@ public class CameraTP : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
@@ -69,13 +68,6 @@ public class CameraTP : MonoBehaviour
             else if (finalRotation.x > (360 - maxYAngle) && finalRotation.x < 360)
                 transform.eulerAngles = finalRotation;
 
-            #if UNITY_EDITOR
-            // Unlock curosor
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            #endif
         }
     }
 
@@ -88,10 +80,6 @@ public class CameraTP : MonoBehaviour
     {
         isLocked = value;
         Cursor.visible = value;
-
-        #if UNITY_EDITOR
-        Cursor.lockState = CursorLockMode.None;
-        #endif
     }
 
 #if UNITY_EDITOR

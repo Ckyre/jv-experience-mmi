@@ -18,6 +18,10 @@ public class MoveMonsterPositionTrigger : Trigger
         base.OnPlayerEnter(col);
 
         isMoving = true;
+
+        AudioSource source = monsterDome.GetComponentInChildren<AudioSource>();
+        source.transform.position = PlayerController.instance.transform.position;
+        source.Play();
     }
 
     private void Update()

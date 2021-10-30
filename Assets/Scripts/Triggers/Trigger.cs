@@ -12,7 +12,6 @@ public abstract class Trigger : MonoBehaviour
         OnPlayerEnter(other);
     }
 
-
     private void OnTriggerStay(Collider other)
     {
         OnPlayerStay(other);
