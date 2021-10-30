@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2750302276968590848}
   - component: {fileID: 2760072599025267682}
   - component: {fileID: 2769650777503386718}
-  - component: {fileID: 2800397529510494596}
   - component: {fileID: 2858929091457078772}
+  - component: {fileID: 1511377001838568142}
   m_Layer: 0
   m_Name: Rock_Med_T3_2x4x2
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2800397529510494596
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2755633303222344668}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: c67748edb3f1e2a40b15db9c9a0d95b0, type: 3}
 --- !u!114 &2858929091457078772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +98,17 @@ MonoBehaviour:
   initialBlockoutSection: 5
   ReapplyMaterialTheme: 1
   IsTriAsset: 0
+--- !u!136 &1511377001838568142
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755633303222344668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.3595005
+  m_Height: 5.596376
+  m_Direction: 2
+  m_Center: {x: -0.03, y: 0.09634447, z: 2.0371704}
