@@ -25,7 +25,7 @@ public class PlaySoundTrigger : Trigger
         if (!isMusic)
             source.PlayOneShot(clip);
         else
-            PlayerController.instance.PlayMusic(clip);
+            PlayerController.instance.PlayMusic(clip, clip.name);
 
         aleradyPlayed = true;
     }

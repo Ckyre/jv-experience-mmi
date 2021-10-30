@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3375517237604016757}
   m_LocalRotation: {x: -0.56182706, y: -0.05045915, z: -0.034362853, w: 0.824999}
   m_LocalPosition: {x: 0, y: -9.46, z: 0}
-  m_LocalScale: {x: 40.17844, y: 40.17844, z: 40.17844}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 6184128323663874498}
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5297654574234185281}
   - component: {fileID: 8481925534216551006}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
