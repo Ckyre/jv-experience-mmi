@@ -768,8 +768,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.68, y: -266.18}
-  m_SizeDelta: {x: 720.697, y: 308.2023}
+  m_AnchoredPosition: {x: 392.68, y: -279.99}
+  m_SizeDelta: {x: 720.697, y: 335.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157396308
 MonoBehaviour:
@@ -791,8 +791,29 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Shaders utilis\xE9s :\nDouble sided diffuse - Ciconia studio\nOutline
-    - Chris Nolet\nUI blur - radardentan\n\nTextures utilis\xE9s :\nNuage - https://pngimg.com/download/55220"
+  m_text: '<b>Fonts</b>
+
+    DrawFont - Any Animations
+
+    Biotif - Degarism Studio
+
+
+    <b>Meshs</b>
+
+    Cliffs
+    and rocks - Blockout - Radical Forge
+
+
+    <b>Musics</b>
+
+    Underwater Exploration
+    - Godmode
+
+    Gamela - E''s Jammy Jams
+
+    Absention - Odonis Odonis
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 889ddbf3c3961d24098b7b2e394da5fa, type: 2}
   m_sharedMaterial: {fileID: 2579075959379807173, guid: 889ddbf3c3961d24098b7b2e394da5fa, type: 2}
@@ -1145,7 +1166,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1119247264}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1265,7 +1286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &302907429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1541,7 +1562,7 @@ RectTransform:
   m_Children:
   - {fileID: 302907429}
   m_Father: {fileID: 1119247264}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3318,7 +3339,7 @@ RectTransform:
   m_Children:
   - {fileID: 1734658892}
   m_Father: {fileID: 1119247264}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4206,7 +4227,7 @@ RectTransform:
   m_Children:
   - {fileID: 1249402947}
   m_Father: {fileID: 1119247264}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4328,11 +4349,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1653622478}
-  - {fileID: 259318466}
   - {fileID: 916276136}
   - {fileID: 377914510}
   - {fileID: 1093129214}
   - {fileID: 1430131497}
+  - {fileID: 259318466}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5345,8 +5366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -392.68286, y: -266.17697}
-  m_SizeDelta: {x: 720.697, y: 308.2023}
+  m_AnchoredPosition: {x: -392.68286, y: -279.98706}
+  m_SizeDelta: {x: 720.697, y: 335.8225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1388009659
 MonoBehaviour:
@@ -5368,10 +5389,33 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sound effects obtained from https://www.zapsplat.com\nAdditional sounds
-    effects from https://www.freesfx.co.uk\n\nMusiques libre de droit utilis\xE9es
-    :\nUnderwater Exploration - Godmode\nGamela - E's Jammy Jams\nAbsention - Odonis
-    Odonis\n\nPolice d\u2019\xE9criture \u201CDrawfont\u201D par : https://www.dafont.com/fr/any-animations.d3741"
+  m_text: '<b>Custom shaders</b>
+
+    Free Double Sided Shaders - Ciconia Studio
+
+    QuickOutline
+    -  Chris Nolet
+
+    Unity_Shader_UI_Blur - radar_dentan
+
+    Water shader - Blockout
+    - Radical Forge
+
+
+    <b>Textures</b>
+
+    Smoke PNG image with transparent background
+    - pngimg.com
+
+    PNG Tree texture - clipground.com
+
+    Starfield Skybox - PULSAR
+    BYTES
+
+    MMI Bordeaux Logo
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 889ddbf3c3961d24098b7b2e394da5fa, type: 2}
   m_sharedMaterial: {fileID: 2579075959379807173, guid: 889ddbf3c3961d24098b7b2e394da5fa, type: 2}
@@ -5652,7 +5696,7 @@ RectTransform:
   m_Children:
   - {fileID: 2032202402}
   m_Father: {fileID: 1119247264}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
