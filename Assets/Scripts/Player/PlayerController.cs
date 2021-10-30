@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -79,9 +80,16 @@ public class PlayerController : MonoBehaviour, Actor
         groundMask = LayerMask.GetMask("Ground", "Default");
         collider = GetComponent<CapsuleCollider>();
 
+        // Hight performances mode
         if (GameManager.gameData.highPerformance)
         {
             attachedCamera.GetComponentInChildren<PostProcessLayer>().enabled = false;
+
+            foreach (Light light in FindObjectsOfType<Light>())
+            {
+                if (light.type == LightType.Point)
+                    light.enabled = false;
+            }
         }
 
         ActiveBush(false);
@@ -345,9 +353,37 @@ public class PlayerController : MonoBehaviour, Actor
         sfxSource.PlayOneShot(clip);
     }
 
-    public void PlayMusic (AudioClip music)
+    private string currentMusicID = "";
+    public void PlayMusic (AudioClip music, string musicID)
     {
+        if(musicID != currentMusicID)
+        {
+            currentMusicID = musicID;
+            StopCoroutine("ChangeMusic");
+            StartCoroutine(ChangeMusic(music));
+        }
+    }
+
+    private IEnumerator ChangeMusic (AudioClip music)
+    {
+        float startVolume = musicSource.volume;
+
+        while (musicSource.volume > 0)
+        {
+            musicSource.volume -= Time.deltaTime * 0.05f;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        musicSource.volume = 0f;
+
+        musicSource.Stop();
         musicSource.PlayOneShot(music);
+
+        while (musicSource.volume < (startVolume - 0.05f))
+        {
+            musicSource.volume += Time.deltaTime * 0.05f;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        musicSource.volume = startVolume;
     }
 
     public void StopMusic()

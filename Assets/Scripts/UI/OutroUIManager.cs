@@ -19,6 +19,7 @@ public class OutroUIManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
         NextPart();
     }
 
@@ -33,7 +34,10 @@ public class OutroUIManager : MonoBehaviour
     public void NextPart()
     {
         if (currentPart >= parts.Count - 1)
+        {
+            GameManager.instance.LoadMainMenu();
             return;
+        }
 
         if (currentPart > 0)
             parts[currentPart - 1].GetComponent<CanvasGroup>().alpha = 0;

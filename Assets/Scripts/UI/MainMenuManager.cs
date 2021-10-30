@@ -28,6 +28,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
+
         startUISourceVolume = uiSource.volume;
         startMusicSourceVolume = musicSource.volume;
 
@@ -36,6 +38,20 @@ public class MainMenuManager : MonoBehaviour
         // Load game scene async
         gameSceneOperation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         gameSceneOperation.allowSceneActivation = false;
+
+        // Update UI with user settings
+        musicVolume.value = GameManager.gameData.musicVolume;
+        sfxVolume.value = GameManager.gameData.sfxVolume;
+
+        // Toggle text update
+        if (GameManager.gameData.highPerformance)
+        {
+            hightPerformanceButtonText.text = "Haute performance : ON";
+        }
+        else
+        {
+            hightPerformanceButtonText.text = "Haute performance : OFF";
+        }
     }
 
     public void SetSection (SectionUI nextSection)
@@ -83,6 +99,7 @@ public class MainMenuManager : MonoBehaviour
     // Settings
     public void OnMusicVolumeSlider()
     {
+        Debug.Log("start");
         GameManager.gameData.musicVolume = musicVolume.value;
         // Apply to scene
         musicSource.volume = startMusicSourceVolume * GameManager.gameData.musicVolume;

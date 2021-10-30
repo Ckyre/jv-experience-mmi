@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndDoorInteraction : Interactable
 {
@@ -81,7 +83,13 @@ public class EndDoorInteraction : Interactable
     public void OpenDoor()
     {
         GameManager.instance.PlaySoundOnMobileSource(transform.position, openDoorSound);
-        gameObject.SetActive(false);
-        // play animation
+        StartCoroutine(DelayedOpenDoor(0.5f));
+    }
+
+    private IEnumerator DelayedOpenDoor (float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        //gameObject.SetActive(false);
+        SceneManager.LoadScene(2);
     }
 }

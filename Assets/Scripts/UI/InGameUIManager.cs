@@ -15,6 +15,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private Animator deathPanelAnimator;
     [Header("Pause")]
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject interactionPanel;
 
     private bool isPaused = false;
 
@@ -33,7 +34,10 @@ public class InGameUIManager : MonoBehaviour
         if (Input.GetKeyDown(GameManager.instance.inputCodes.close))
         {
             if (isPaused)
+            {
                 OnResumeButton();
+                Cursor.visible = false;
+            }
             else
                 PauseGame();
         }
@@ -79,6 +83,7 @@ public class InGameUIManager : MonoBehaviour
     {
         pausePanel.SetActive(true);
         isPaused = true;
+        Cursor.visible = true;
         Time.timeScale = 0f;
     }
 
@@ -86,6 +91,12 @@ public class InGameUIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
+        Cursor.visible = false;
         pausePanel.SetActive(false);
+    }
+
+    public void SetInteractionUI(bool value)
+    {
+        interactionPanel.SetActive(value);
     }
 }
