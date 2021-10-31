@@ -1,6 +1,8 @@
 # Groupe 9
 Adel SANAA, Gabriel PAGLIA, Théo SAMINADIN, Kayo SILVA et Gabriel ROULEAU
 
+## Commit de la version 'JAM'
+https://github.com/Ckyre/jv-experience-mmi/tree/3dab1deb97fe668e89763165769eefa1ebf9fb02
 
 ## Assets externes
 TOUTES les assets utilisées dans le jeu sont orignales et crées entiérement par notre équipe a l'exception de :

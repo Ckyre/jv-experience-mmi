@@ -8,7 +8,7 @@ QualitySettings:
   m_QualitySettings:
   - serializedVersion: 2
     name: Default
-    pixelLightCount: 12
+    pixelLightCount: 16
     shadows: 1
     shadowResolution: 1
     shadowProjection: 1
