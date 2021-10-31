@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraTP : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private Camera cameraChild;
     [SerializeField] private Vector2 lookOffset;
     [SerializeField] private float maxYAngle = 50.0f;
     [SerializeField] private float cameraHeight = 2.0f;
@@ -12,21 +13,16 @@ public class CameraTP : MonoBehaviour
     [SerializeField, Range(0, 15)] private float sensivity = 12.0f;
     [SerializeField] private bool invertY = false;
 
-    private Camera cameraChild;
+    
 
     private float zoom = 5.0f;
     private float targetZoom; // for lerp zoom
     private bool isLocked = false;
 
-    private void Awake()
-    {
-        cameraChild = GetComponentInChildren<Camera>();
-        cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
-    }
-
     private void Start()
     {
         Cursor.visible = false;
+        cameraChild.transform.localPosition = new Vector3(0, cameraHeight, -Mathf.Abs(zoom));
     }
 
     private void Update()
